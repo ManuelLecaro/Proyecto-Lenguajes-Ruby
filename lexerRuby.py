@@ -6,7 +6,16 @@ reservadas={'alias':'ALIAS','and':'AND','break':'BREAK','case':'CASE','class':'C
                     ,'retry':'RETRY','return':'RETURN','self':'SELF','super':'SUPER','then':'THEN','true':'TRUE','undef':'UNDEF'
                     ,'unless':'UNLESS','until':'UNTIL','when':'WHEN','while':'WHILE','yield':'YIELD','_FILE_':'FILE','_LINE_':'LINE'}
 
-tokens = ['LOCAL', 'GLOBAL', 'CONSTANTS', 'INSTANCEVAR','CLASSVAR','PSEUDO','ERROR' ]+list(reservadas.values())
+tokens = ['LOCAL', 'GLOBAL', 'CONSTANTS', 'INSTANCEVAR','CLASSVAR','PSEUDO','ERROR',
+        #ARITHMETIC OPERATORS
+        'EXP','MUL','DIV','MOD','ADD','SUB',
+        #BASIC COMPARISON OPERATORS
+        'EQUAL','NOTEQ','GREATHER','LOWER','GREATHEREQ','LOWEREQ',
+        #ASSIGMENT OPERATORS
+        'ASS','ADDASS','SUBASS','MULASS','DIVASS','MODASS','EXPASS',
+        #BASIC LOGICAL OPERATORS
+        'ANDLOG','ORLOG','NOTLOG'
+        ]+list(reservadas.values())
 
 t_LOCAL = r'^(_|[a-z])[a-zA-Z0-9_]*'
 t_GLOBAL = r'\$[a-zA-Z][a-zA-Z0-9_]*'
@@ -14,6 +23,35 @@ t_CONSTANTS = r'^[A-Z][A-Z0-9_]*'
 t_INSTANCEVAR = r'^@[a-zA-Z][a-zA-Z0-9_]*'
 t_CLASSVAR = r'^@@[a-zA-Z][a-zA-Z0-9_]*'
 t_PSEUDO = r'self|true|false|nil|__FILE__|__LINE__'
+
+#ARITHMETIC OPERATORS
+t_EXP = r'^\*\*'
+t_MUL = r'^\*'
+t_DIV = r'^/'
+t_MOD =  r'^%'
+t_ADD =  r'^\+'
+t_SUB = r'^-'
+#BASIC COMPARISON OPERATORS
+t_EQUAL = r'^=='
+t_NOTEQ = r'^!='
+t_GREATHER = r'^>'
+t_LOWER = r'^<'
+t_GREATHEREQ = r'^>='
+t_LOWEREQ = r'^<='
+#ASSIGMENT OPERATORS
+t_ASS = r'^='
+t_ADDASS = r'^\+='
+t_SUBASS = r'^-='
+t_MULASS = r'^\*='
+t_DIVASS = r'^/='
+t_MODASS = r'^%='
+t_EXPASS = r'^\*\*='
+#BASIC LOGICAL OPERATORS
+t_ANDLOG = r'^&&'
+t_ORLOG = r'^\|\|'
+t_NOTLOG = r'^!'
+
+
 
 def t_error(token):
     salida = "\ntype:" + token.type
@@ -173,8 +211,13 @@ def t_LINE(t):
 
 lex.lex()
 
-
-texter = ['CONSTANTE', '4local','_local', '$global','@instance', '@@clase_', '@peso',"self",'4','alias','def','for','if','and','super','lista']
+texter = ['CONSTANTE', '4local','_local', '$global','@instance', '@@clase_', '@peso',"self",'4',
+                'alias','def','for','if','and','super','lista',
+                '**','*','/','%','+','-',
+                '==','!=','>','<','>=','<=',
+                '=','+=','-=','*=','/=','%=','**=',
+                '&&','||','!'
+                ]
 
 for i in texter:
     lex.input(i)
