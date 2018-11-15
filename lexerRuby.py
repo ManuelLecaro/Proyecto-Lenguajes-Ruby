@@ -1,6 +1,6 @@
 import ply.lex as lex
 
-reservadas={'alias':'ALIAS','and':'AND','break':'BREAK','case':'CASE','class':'CLASS','def':'DEF','defined?':'DEFINED'
+reservadas={'alias':'ALIAS','and':'AND','begin':'BEGIN','break':'BREAK','case':'CASE','class':'CLASS','def':'DEF','defined?':'DEFINED'
                     ,'do':'DO','else':'ELSE','elsif':'ELSIF','end':'END','ensure':'ENSURE','false':'FALSE','for':'FOR','if':'IF'
                     ,'in':'IN','module':'MODULE','next':'NEXT','nil':'NIL','not':'NOT','or':'OR','redo':'REDO','rescue':'RESCUE'
                     ,'retry':'RETRY','return':'RETURN','self':'SELF','super':'SUPER','then':'THEN','true':'TRUE','undef':'UNDEF'
@@ -77,6 +77,10 @@ def t_AND(t):
 def t_BREAK(t):
     r'[a-z\_]+'
     t.type=reservadas.get(t.value,'BREAK')
+    return t
+def t_BEGIN(t):
+    r'[a-z\_]+'
+    t.type=reservadas.get(t.value,'BEGIN')
     return t
 def t_CASE(t):
     r'[a-z\_]+'
