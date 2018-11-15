@@ -1,1 +1,643 @@
 Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ALIAS
+    BREAK
+    CASE
+    CLASS
+    DEF
+    DEFINED
+    ENSURE
+    ERROR
+    FALSE
+    FILE
+    LINE
+    MODULE
+    NEXT
+    NIL
+    PSEUDO
+    REDO
+    RESCUE
+    RETRY
+    RETURN
+    SELF
+    SUPER
+    TRUE
+    UNDEF
+    UNLESS
+    UNTIL
+    WHEN
+    YIELD
+
+Grammar
+
+Rule 0     S' -> assign
+Rule 1     assign -> variable ASS expr
+Rule 2     assign -> variable ASS sexpr
+Rule 3     math -> term arith term
+Rule 4     math -> term arith math
+Rule 5     math -> variable asig term
+Rule 6     variable -> LOCAL
+Rule 7     variable -> GLOBAL
+Rule 8     variable -> CONSTANTS
+Rule 9     variable -> INSTANCEVAR
+Rule 10    variable -> CLASSVAR
+Rule 11    asig -> ASS
+Rule 12    asig -> ADDASS
+Rule 13    asig -> SUBASS
+Rule 14    asig -> MULASS
+Rule 15    asig -> DIVASS
+Rule 16    asig -> MODASS
+Rule 17    asig -> EXPASS
+Rule 18    expr -> expr arith term
+Rule 19    expr -> term
+Rule 20    expr -> variable
+Rule 21    expr -> assign
+Rule 22    sexpr -> sterm MUL term
+Rule 23    sexpr -> sterm ADD sexpr
+Rule 24    sexpr -> sterm
+Rule 25    term -> NUMBER
+Rule 26    sterm -> STRING
+Rule 27    arith -> EXP
+Rule 28    arith -> MUL
+Rule 29    arith -> DIV
+Rule 30    arith -> MOD
+Rule 31    arith -> ADD
+Rule 32    arith -> SUB
+Rule 33    logic -> variable comparison variable
+Rule 34    logic -> variable EQUAL BOOLEAN
+Rule 35    logic -> variable comparison term
+Rule 36    logic -> variable comparison sterm
+Rule 37    logic -> logic logcompare logic
+Rule 38    logic -> logic logcompare BOOLEAN
+Rule 39    logic -> BOOLEAN logcompare BOOLEAN
+Rule 40    logic -> BOOLEAN logcompare logic
+Rule 41    logic -> term comparison variable
+Rule 42    logic -> sterm comparison variable
+Rule 43    comparison -> EQUAL
+Rule 44    comparison -> NOTEQ
+Rule 45    comparison -> GREATHER
+Rule 46    comparison -> LOWER
+Rule 47    comparison -> GREATHEREQ
+Rule 48    comparison -> LOWEREQ
+Rule 49    logcompare -> ANDLOG
+Rule 50    logcompare -> ORLOG
+Rule 51    logcompare -> NOTLOG
+Rule 52    logcompare -> AND
+Rule 53    logcompare -> OR
+Rule 54    logcompare -> NOT
+Rule 55    salto -> <empty>
+Rule 56    if -> IF logic salto expr salto
+Rule 57    if -> IF logic THEN salto expr salto
+Rule 58    if -> if END
+Rule 59    if -> if else END
+Rule 60    if -> if elsif END
+Rule 61    else -> ELSE salto expr salto
+Rule 62    elsif -> ELSIF logic salto expr salto
+Rule 63    elsif -> ELSIF logic THEN salto expr salto
+Rule 64    elsif -> elsif elsif
+Rule 65    elsif -> elsif else
+Rule 66    code -> expr
+Rule 67    code -> if
+Rule 68    while -> WHILE logic salto code salto END
+Rule 69    while -> WHILE logic DO salto code END
+Rule 70    while -> WHILE logic DOBLEPOINT code END
+Rule 71    while -> BEGIN salto code END WHILE logic
+Rule 72    iterador -> variable
+Rule 73    iterador -> variable , variable
+Rule 74    expresiones -> term DOUBLESECUENCEPOINT term
+Rule 75    for -> FOR iterador IN expresiones salto code salto END
+Rule 76    for -> FOR iterador IN expresiones DO salto code salto END
+Rule 77    for -> FOR iterador IN array salto code salto END
+Rule 78    for -> FOR iterador IN array DO salto code salto END
+Rule 79    array -> LBRACK defarray RBRACK
+Rule 80    defarray -> NUMBER
+Rule 81    defarray -> NUMBER COMA defarray
+Rule 82    defarray -> STRING
+Rule 83    defarray -> STRING COMA defarray
+Rule 84    defarray -> INT
+Rule 85    defarray -> INT COMA defarray
+Rule 86    defarray -> FLOAT
+Rule 87    defarray -> FLOAT COMA defarray
+Rule 88    defarray -> BOOLEAN
+Rule 89    defarray -> BOOLEAN COMA defarray
+Rule 90    assarray -> variable ASS array
+Rule 91    assarray -> array
+Rule 92    index -> variable LBRACK INT RBRACK
+Rule 93    slice -> variable LBRACK defslice RBRACK
+Rule 94    defslice -> INT DOBLEPOINT INT
+Rule 95    defslice -> INT DOBLEPOINT
+Rule 96    defslice -> DOBLEPOINT INT
+
+Terminals, with rules where they appear
+
+,                    : 73
+ADD                  : 23 31
+ADDASS               : 12
+ALIAS                : 
+AND                  : 52
+ANDLOG               : 49
+ASS                  : 1 2 11 90
+BEGIN                : 71
+BOOLEAN              : 34 38 39 39 40 88 89
+BREAK                : 
+CASE                 : 
+CLASS                : 
+CLASSVAR             : 10
+COMA                 : 81 83 85 87 89
+CONSTANTS            : 8
+DEF                  : 
+DEFINED              : 
+DIV                  : 29
+DIVASS               : 15
+DO                   : 69 76 78
+DOBLEPOINT           : 70 94 95 96
+DOUBLESECUENCEPOINT  : 74
+ELSE                 : 61
+ELSIF                : 62 63
+END                  : 58 59 60 68 69 70 71 75 76 77 78
+ENSURE               : 
+EQUAL                : 34 43
+ERROR                : 
+EXP                  : 27
+EXPASS               : 17
+FALSE                : 
+FILE                 : 
+FLOAT                : 86 87
+FOR                  : 75 76 77 78
+GLOBAL               : 7
+GREATHER             : 45
+GREATHEREQ           : 47
+IF                   : 56 57
+IN                   : 75 76 77 78
+INSTANCEVAR          : 9
+INT                  : 84 85 92 94 94 95 96
+LBRACK               : 79 92 93
+LINE                 : 
+LOCAL                : 6
+LOWER                : 46
+LOWEREQ              : 48
+MOD                  : 30
+MODASS               : 16
+MODULE               : 
+MUL                  : 22 28
+MULASS               : 14
+NEXT                 : 
+NIL                  : 
+NOT                  : 54
+NOTEQ                : 44
+NOTLOG               : 51
+NUMBER               : 25 80 81
+OR                   : 53
+ORLOG                : 50
+PSEUDO               : 
+RBRACK               : 79 92 93
+REDO                 : 
+RESCUE               : 
+RETRY                : 
+RETURN               : 
+SELF                 : 
+STRING               : 26 82 83
+SUB                  : 32
+SUBASS               : 13
+SUPER                : 
+THEN                 : 57 63
+TRUE                 : 
+UNDEF                : 
+UNLESS               : 
+UNTIL                : 
+WHEN                 : 
+WHILE                : 68 69 70 71
+YIELD                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+arith                : 3 4 18
+array                : 77 78 90 91
+asig                 : 5
+assarray             : 
+assign               : 21 0
+code                 : 68 69 70 71 75 76 77 78
+comparison           : 33 35 36 41 42
+defarray             : 79 81 83 85 87 89
+defslice             : 93
+else                 : 59 65
+elsif                : 60 64 64 65
+expr                 : 1 18 56 57 61 62 63 66
+expresiones          : 75 76
+for                  : 
+if                   : 58 59 60 67
+index                : 
+iterador             : 75 76 77 78
+logcompare           : 37 38 39 40
+logic                : 37 37 38 40 56 57 62 63 68 69 70 71
+math                 : 4
+salto                : 56 56 57 57 61 61 62 62 63 63 68 68 69 71 75 75 76 76 77 77 78 78
+sexpr                : 2 23
+slice                : 
+sterm                : 22 23 24 36 42
+term                 : 3 3 4 5 18 19 22 35 41 74 74
+variable             : 1 2 5 20 33 33 34 35 36 41 42 72 73 73 90 92 93
+while                : 
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . assign
+    (1) assign -> . variable ASS expr
+    (2) assign -> . variable ASS sexpr
+    (6) variable -> . LOCAL
+    (7) variable -> . GLOBAL
+    (8) variable -> . CONSTANTS
+    (9) variable -> . INSTANCEVAR
+    (10) variable -> . CLASSVAR
+
+    LOCAL           shift and go to state 3
+    GLOBAL          shift and go to state 4
+    CONSTANTS       shift and go to state 5
+    INSTANCEVAR     shift and go to state 6
+    CLASSVAR        shift and go to state 7
+
+    assign                         shift and go to state 1
+    variable                       shift and go to state 2
+
+state 1
+
+    (0) S' -> assign .
+
+
+
+state 2
+
+    (1) assign -> variable . ASS expr
+    (2) assign -> variable . ASS sexpr
+
+    ASS             shift and go to state 8
+
+
+state 3
+
+    (6) variable -> LOCAL .
+
+    ASS             reduce using rule 6 (variable -> LOCAL .)
+    EXP             reduce using rule 6 (variable -> LOCAL .)
+    MUL             reduce using rule 6 (variable -> LOCAL .)
+    DIV             reduce using rule 6 (variable -> LOCAL .)
+    MOD             reduce using rule 6 (variable -> LOCAL .)
+    ADD             reduce using rule 6 (variable -> LOCAL .)
+    SUB             reduce using rule 6 (variable -> LOCAL .)
+    $end            reduce using rule 6 (variable -> LOCAL .)
+
+
+state 4
+
+    (7) variable -> GLOBAL .
+
+    ASS             reduce using rule 7 (variable -> GLOBAL .)
+    EXP             reduce using rule 7 (variable -> GLOBAL .)
+    MUL             reduce using rule 7 (variable -> GLOBAL .)
+    DIV             reduce using rule 7 (variable -> GLOBAL .)
+    MOD             reduce using rule 7 (variable -> GLOBAL .)
+    ADD             reduce using rule 7 (variable -> GLOBAL .)
+    SUB             reduce using rule 7 (variable -> GLOBAL .)
+    $end            reduce using rule 7 (variable -> GLOBAL .)
+
+
+state 5
+
+    (8) variable -> CONSTANTS .
+
+    ASS             reduce using rule 8 (variable -> CONSTANTS .)
+    EXP             reduce using rule 8 (variable -> CONSTANTS .)
+    MUL             reduce using rule 8 (variable -> CONSTANTS .)
+    DIV             reduce using rule 8 (variable -> CONSTANTS .)
+    MOD             reduce using rule 8 (variable -> CONSTANTS .)
+    ADD             reduce using rule 8 (variable -> CONSTANTS .)
+    SUB             reduce using rule 8 (variable -> CONSTANTS .)
+    $end            reduce using rule 8 (variable -> CONSTANTS .)
+
+
+state 6
+
+    (9) variable -> INSTANCEVAR .
+
+    ASS             reduce using rule 9 (variable -> INSTANCEVAR .)
+    EXP             reduce using rule 9 (variable -> INSTANCEVAR .)
+    MUL             reduce using rule 9 (variable -> INSTANCEVAR .)
+    DIV             reduce using rule 9 (variable -> INSTANCEVAR .)
+    MOD             reduce using rule 9 (variable -> INSTANCEVAR .)
+    ADD             reduce using rule 9 (variable -> INSTANCEVAR .)
+    SUB             reduce using rule 9 (variable -> INSTANCEVAR .)
+    $end            reduce using rule 9 (variable -> INSTANCEVAR .)
+
+
+state 7
+
+    (10) variable -> CLASSVAR .
+
+    ASS             reduce using rule 10 (variable -> CLASSVAR .)
+    EXP             reduce using rule 10 (variable -> CLASSVAR .)
+    MUL             reduce using rule 10 (variable -> CLASSVAR .)
+    DIV             reduce using rule 10 (variable -> CLASSVAR .)
+    MOD             reduce using rule 10 (variable -> CLASSVAR .)
+    ADD             reduce using rule 10 (variable -> CLASSVAR .)
+    SUB             reduce using rule 10 (variable -> CLASSVAR .)
+    $end            reduce using rule 10 (variable -> CLASSVAR .)
+
+
+state 8
+
+    (1) assign -> variable ASS . expr
+    (2) assign -> variable ASS . sexpr
+    (18) expr -> . expr arith term
+    (19) expr -> . term
+    (20) expr -> . variable
+    (21) expr -> . assign
+    (22) sexpr -> . sterm MUL term
+    (23) sexpr -> . sterm ADD sexpr
+    (24) sexpr -> . sterm
+    (25) term -> . NUMBER
+    (6) variable -> . LOCAL
+    (7) variable -> . GLOBAL
+    (8) variable -> . CONSTANTS
+    (9) variable -> . INSTANCEVAR
+    (10) variable -> . CLASSVAR
+    (1) assign -> . variable ASS expr
+    (2) assign -> . variable ASS sexpr
+    (26) sterm -> . STRING
+
+    NUMBER          shift and go to state 15
+    LOCAL           shift and go to state 3
+    GLOBAL          shift and go to state 4
+    CONSTANTS       shift and go to state 5
+    INSTANCEVAR     shift and go to state 6
+    CLASSVAR        shift and go to state 7
+    STRING          shift and go to state 16
+
+    variable                       shift and go to state 9
+    expr                           shift and go to state 10
+    sexpr                          shift and go to state 11
+    term                           shift and go to state 12
+    assign                         shift and go to state 13
+    sterm                          shift and go to state 14
+
+state 9
+
+    (20) expr -> variable .
+    (1) assign -> variable . ASS expr
+    (2) assign -> variable . ASS sexpr
+
+    EXP             reduce using rule 20 (expr -> variable .)
+    MUL             reduce using rule 20 (expr -> variable .)
+    DIV             reduce using rule 20 (expr -> variable .)
+    MOD             reduce using rule 20 (expr -> variable .)
+    ADD             reduce using rule 20 (expr -> variable .)
+    SUB             reduce using rule 20 (expr -> variable .)
+    $end            reduce using rule 20 (expr -> variable .)
+    ASS             shift and go to state 8
+
+
+state 10
+
+    (1) assign -> variable ASS expr .
+    (18) expr -> expr . arith term
+    (27) arith -> . EXP
+    (28) arith -> . MUL
+    (29) arith -> . DIV
+    (30) arith -> . MOD
+    (31) arith -> . ADD
+    (32) arith -> . SUB
+
+  ! shift/reduce conflict for EXP resolved as shift
+  ! shift/reduce conflict for MUL resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+  ! shift/reduce conflict for ADD resolved as shift
+  ! shift/reduce conflict for SUB resolved as shift
+    $end            reduce using rule 1 (assign -> variable ASS expr .)
+    EXP             shift and go to state 18
+    MUL             shift and go to state 19
+    DIV             shift and go to state 20
+    MOD             shift and go to state 21
+    ADD             shift and go to state 22
+    SUB             shift and go to state 23
+
+  ! EXP             [ reduce using rule 1 (assign -> variable ASS expr .) ]
+  ! MUL             [ reduce using rule 1 (assign -> variable ASS expr .) ]
+  ! DIV             [ reduce using rule 1 (assign -> variable ASS expr .) ]
+  ! MOD             [ reduce using rule 1 (assign -> variable ASS expr .) ]
+  ! ADD             [ reduce using rule 1 (assign -> variable ASS expr .) ]
+  ! SUB             [ reduce using rule 1 (assign -> variable ASS expr .) ]
+
+    arith                          shift and go to state 17
+
+state 11
+
+    (2) assign -> variable ASS sexpr .
+
+    $end            reduce using rule 2 (assign -> variable ASS sexpr .)
+    EXP             reduce using rule 2 (assign -> variable ASS sexpr .)
+    MUL             reduce using rule 2 (assign -> variable ASS sexpr .)
+    DIV             reduce using rule 2 (assign -> variable ASS sexpr .)
+    MOD             reduce using rule 2 (assign -> variable ASS sexpr .)
+    ADD             reduce using rule 2 (assign -> variable ASS sexpr .)
+    SUB             reduce using rule 2 (assign -> variable ASS sexpr .)
+
+
+state 12
+
+    (19) expr -> term .
+
+    EXP             reduce using rule 19 (expr -> term .)
+    MUL             reduce using rule 19 (expr -> term .)
+    DIV             reduce using rule 19 (expr -> term .)
+    MOD             reduce using rule 19 (expr -> term .)
+    ADD             reduce using rule 19 (expr -> term .)
+    SUB             reduce using rule 19 (expr -> term .)
+    $end            reduce using rule 19 (expr -> term .)
+
+
+state 13
+
+    (21) expr -> assign .
+
+    EXP             reduce using rule 21 (expr -> assign .)
+    MUL             reduce using rule 21 (expr -> assign .)
+    DIV             reduce using rule 21 (expr -> assign .)
+    MOD             reduce using rule 21 (expr -> assign .)
+    ADD             reduce using rule 21 (expr -> assign .)
+    SUB             reduce using rule 21 (expr -> assign .)
+    $end            reduce using rule 21 (expr -> assign .)
+
+
+state 14
+
+    (22) sexpr -> sterm . MUL term
+    (23) sexpr -> sterm . ADD sexpr
+    (24) sexpr -> sterm .
+
+  ! shift/reduce conflict for MUL resolved as shift
+  ! shift/reduce conflict for ADD resolved as shift
+    MUL             shift and go to state 24
+    ADD             shift and go to state 25
+    $end            reduce using rule 24 (sexpr -> sterm .)
+    EXP             reduce using rule 24 (sexpr -> sterm .)
+    DIV             reduce using rule 24 (sexpr -> sterm .)
+    MOD             reduce using rule 24 (sexpr -> sterm .)
+    SUB             reduce using rule 24 (sexpr -> sterm .)
+
+  ! MUL             [ reduce using rule 24 (sexpr -> sterm .) ]
+  ! ADD             [ reduce using rule 24 (sexpr -> sterm .) ]
+
+
+state 15
+
+    (25) term -> NUMBER .
+
+    EXP             reduce using rule 25 (term -> NUMBER .)
+    MUL             reduce using rule 25 (term -> NUMBER .)
+    DIV             reduce using rule 25 (term -> NUMBER .)
+    MOD             reduce using rule 25 (term -> NUMBER .)
+    ADD             reduce using rule 25 (term -> NUMBER .)
+    SUB             reduce using rule 25 (term -> NUMBER .)
+    $end            reduce using rule 25 (term -> NUMBER .)
+
+
+state 16
+
+    (26) sterm -> STRING .
+
+    MUL             reduce using rule 26 (sterm -> STRING .)
+    ADD             reduce using rule 26 (sterm -> STRING .)
+    $end            reduce using rule 26 (sterm -> STRING .)
+    EXP             reduce using rule 26 (sterm -> STRING .)
+    DIV             reduce using rule 26 (sterm -> STRING .)
+    MOD             reduce using rule 26 (sterm -> STRING .)
+    SUB             reduce using rule 26 (sterm -> STRING .)
+
+
+state 17
+
+    (18) expr -> expr arith . term
+    (25) term -> . NUMBER
+
+    NUMBER          shift and go to state 15
+
+    term                           shift and go to state 26
+
+state 18
+
+    (27) arith -> EXP .
+
+    NUMBER          reduce using rule 27 (arith -> EXP .)
+
+
+state 19
+
+    (28) arith -> MUL .
+
+    NUMBER          reduce using rule 28 (arith -> MUL .)
+
+
+state 20
+
+    (29) arith -> DIV .
+
+    NUMBER          reduce using rule 29 (arith -> DIV .)
+
+
+state 21
+
+    (30) arith -> MOD .
+
+    NUMBER          reduce using rule 30 (arith -> MOD .)
+
+
+state 22
+
+    (31) arith -> ADD .
+
+    NUMBER          reduce using rule 31 (arith -> ADD .)
+
+
+state 23
+
+    (32) arith -> SUB .
+
+    NUMBER          reduce using rule 32 (arith -> SUB .)
+
+
+state 24
+
+    (22) sexpr -> sterm MUL . term
+    (25) term -> . NUMBER
+
+    NUMBER          shift and go to state 15
+
+    term                           shift and go to state 27
+
+state 25
+
+    (23) sexpr -> sterm ADD . sexpr
+    (22) sexpr -> . sterm MUL term
+    (23) sexpr -> . sterm ADD sexpr
+    (24) sexpr -> . sterm
+    (26) sterm -> . STRING
+
+    STRING          shift and go to state 16
+
+    sterm                          shift and go to state 14
+    sexpr                          shift and go to state 28
+
+state 26
+
+    (18) expr -> expr arith term .
+
+    EXP             reduce using rule 18 (expr -> expr arith term .)
+    MUL             reduce using rule 18 (expr -> expr arith term .)
+    DIV             reduce using rule 18 (expr -> expr arith term .)
+    MOD             reduce using rule 18 (expr -> expr arith term .)
+    ADD             reduce using rule 18 (expr -> expr arith term .)
+    SUB             reduce using rule 18 (expr -> expr arith term .)
+    $end            reduce using rule 18 (expr -> expr arith term .)
+
+
+state 27
+
+    (22) sexpr -> sterm MUL term .
+
+    $end            reduce using rule 22 (sexpr -> sterm MUL term .)
+    EXP             reduce using rule 22 (sexpr -> sterm MUL term .)
+    MUL             reduce using rule 22 (sexpr -> sterm MUL term .)
+    DIV             reduce using rule 22 (sexpr -> sterm MUL term .)
+    MOD             reduce using rule 22 (sexpr -> sterm MUL term .)
+    ADD             reduce using rule 22 (sexpr -> sterm MUL term .)
+    SUB             reduce using rule 22 (sexpr -> sterm MUL term .)
+
+
+state 28
+
+    (23) sexpr -> sterm ADD sexpr .
+
+    $end            reduce using rule 23 (sexpr -> sterm ADD sexpr .)
+    EXP             reduce using rule 23 (sexpr -> sterm ADD sexpr .)
+    MUL             reduce using rule 23 (sexpr -> sterm ADD sexpr .)
+    DIV             reduce using rule 23 (sexpr -> sterm ADD sexpr .)
+    MOD             reduce using rule 23 (sexpr -> sterm ADD sexpr .)
+    ADD             reduce using rule 23 (sexpr -> sterm ADD sexpr .)
+    SUB             reduce using rule 23 (sexpr -> sterm ADD sexpr .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for EXP in state 10 resolved as shift
+WARNING: shift/reduce conflict for MUL in state 10 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 10 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 10 resolved as shift
+WARNING: shift/reduce conflict for ADD in state 10 resolved as shift
+WARNING: shift/reduce conflict for SUB in state 10 resolved as shift
+WARNING: shift/reduce conflict for MUL in state 14 resolved as shift
+WARNING: shift/reduce conflict for ADD in state 14 resolved as shift

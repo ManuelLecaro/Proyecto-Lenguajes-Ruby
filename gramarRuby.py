@@ -57,11 +57,16 @@ def p_arith(p):
 
 def p_logic(p):
     '''logic : variable comparison variable
-             | variable EQUAL FALSE
-             | variable EQUAL TRUE
+             | variable EQUAL BOOLEAN
              | variable comparison term
              | variable comparison sterm
-             | logic logcompare logic'''
+             | logic logcompare logic
+             | logic logcompare BOOLEAN
+             | BOOLEAN logcompare BOOLEAN
+             | BOOLEAN logcompare logic
+             | term comparison variable
+             | sterm comparison variable
+             '''
 
 def p_comparison(p):
     '''comparison : EQUAL
@@ -84,8 +89,8 @@ def p_error(p):
 #Definicion de la estructuras de condicion y lazos
 def p_salto(p):
     '''salto : \n '''
-def p_puntos(p):
-    '''puntos : ":"'''
+# def p_puntos(p):
+#     '''puntos : ":"'''
 def p_if(p):
     '''if : IF logic salto expr salto
           | IF logic THEN salto expr salto
@@ -102,21 +107,56 @@ def p_elsif(p):
 def p_code(p):
     '''code : expr
             | if'''
+# def p_while(p):
+#     '''while : WHILE logic salto code salto END
+#              | WHILE logic DO salto code END
+#              | WHILE  logic DOBLEPOIN code END
+#              | while while
+#              | BEGIN salto code END WHILE logic'''
 def p_while(p):
     '''while : WHILE logic salto code salto END
              | WHILE logic DO salto code END
-             | WHILE  logic puntos code END
-             |while while
-             |BEGIN salto code END WHILE logic'''
+             | WHILE  logic DOBLEPOINT code END
+             | BEGIN salto code END WHILE logic'''
 def p_iterador(p):
     '''iterador : variable
                 | variable "," variable'''
 def p_expresiones(p):
-    '''expresiones : term ".." term'''
+    '''expresiones : term DOUBLESECUENCEPOINT term'''
 def p_for(p):
     '''for : FOR iterador IN expresiones salto code salto END
            | FOR iterador IN expresiones DO salto code salto END
-           | FOR iterador IN list salto code salto END
-           | FOR iterador IN list DO salto code salto END'''
+           | FOR iterador IN array salto code salto END
+           | FOR iterador IN array DO salto code salto END'''
+
+def p_array(p):
+    '''array : LBRACK defarray RBRACK'''
+
+def p_defarray(p):
+    '''defarray : NUMBER 
+                | NUMBER COMA defarray
+                | STRING
+                | STRING COMA defarray
+                | INT
+                | INT COMA defarray
+                | FLOAT
+                | FLOAT COMA defarray
+                | BOOLEAN
+                | BOOLEAN COMA defarray'''
+
+def p_assarray(p):
+    '''assarray : variable ASS array
+                | array'''
+
+def p_index(p):
+    '''index : variable LBRACK INT RBRACK'''
+
+def p_slice(p):
+    '''slice : variable LBRACK defslice RBRACK'''
+
+def p_defslice(p):
+    '''defslice : INT DOBLEPOINT INT
+                    | INT DOBLEPOINT
+                    | DOBLEPOINT INT'''
 
 yacc.yacc()

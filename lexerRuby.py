@@ -8,7 +8,7 @@ reservadas={'alias':'ALIAS','and':'AND','begin':'BEGIN','break':'BREAK','case':'
 
 tokens = ['LOCAL', 'GLOBAL', 'CONSTANTS', 'INSTANCEVAR','CLASSVAR','PSEUDO','ERROR',
         #BASIC DATA TYPES
-        'NUMBER', 'STRING',
+        'NUMBER', 'STRING','BOOLEAN','INT','FLOAT',
         #ARITHMETIC OPERATORS
         'EXP','MUL','DIV','MOD','ADD','SUB',
         #BASIC COMPARISON OPERATORS
@@ -16,7 +16,9 @@ tokens = ['LOCAL', 'GLOBAL', 'CONSTANTS', 'INSTANCEVAR','CLASSVAR','PSEUDO','ERR
         #ASSIGMENT OPERATORS
         'ASS','ADDASS','SUBASS','MULASS','DIVASS','MODASS','EXPASS',
         #BASIC LOGICAL OPERATORS
-        'ANDLOG','ORLOG','NOTLOG'
+        'ANDLOG','ORLOG','NOTLOG',
+        #OTHERS
+        'LBRACK','RBRACK','COMA','DOBLEPOINT','DOUBLESECUENCEPOINT',
         ]+list(reservadas.values())
 
 t_LOCAL = r'^(_|[a-z])[a-zA-Z0-9_]*'
@@ -29,6 +31,9 @@ t_PSEUDO = r'self|true|false|nil|__FILE__|__LINE__'
 #BASIC DATA TYPES
 t_NUMBER = r'[0-9]+((\.[0-9]+))?'
 t_STRING = r'[a-z\_]+'
+t_BOOLEAN = r'true|false'
+t_INT = r'^[0-9]+'
+t_FLOAT = r'^[0,9]*.[0-9]+'
 
 #ARITHMETIC OPERATORS
 t_EXP = r'^\*\*'
@@ -56,6 +61,12 @@ t_EXPASS = r'^\*\*='
 t_ANDLOG = r'^&&'
 t_ORLOG = r'^\|\|'
 t_NOTLOG = r'^!'
+#OTHERS
+t_LBRACK = r'\['
+t_RBRACK = r'\]'
+t_COMA = r','
+t_DOBLEPOINT = r':'
+t_DOUBLESECUENCEPOINT = r'..'
 
 
 
