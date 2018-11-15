@@ -7,6 +7,8 @@ reservadas={'alias':'ALIAS','and':'AND','break':'BREAK','case':'CASE','class':'C
                     ,'unless':'UNLESS','until':'UNTIL','when':'WHEN','while':'WHILE','yield':'YIELD','_FILE_':'FILE','_LINE_':'LINE'}
 
 tokens = ['LOCAL', 'GLOBAL', 'CONSTANTS', 'INSTANCEVAR','CLASSVAR','PSEUDO','ERROR',
+        #BASIC DATA TYPES
+        'NUMBER', 'STRING',
         #ARITHMETIC OPERATORS
         'EXP','MUL','DIV','MOD','ADD','SUB',
         #BASIC COMPARISON OPERATORS
@@ -23,6 +25,10 @@ t_CONSTANTS = r'^[A-Z][A-Z0-9_]*'
 t_INSTANCEVAR = r'^@[a-zA-Z][a-zA-Z0-9_]*'
 t_CLASSVAR = r'^@@[a-zA-Z][a-zA-Z0-9_]*'
 t_PSEUDO = r'self|true|false|nil|__FILE__|__LINE__'
+
+#BASIC DATA TYPES
+t_NUMBER = r'[0-9]+((\.[0-9]+))?'
+t_STRING = r'[a-z\_]+'
 
 #ARITHMETIC OPERATORS
 t_EXP = r'^\*\*'
