@@ -82,6 +82,7 @@ def codigoBotonLexico():
 	listaA,listaB=separadorPalabaras(textA,textB)
 	print(listaA)
 	print(listaB)
+
 def separadorPalabaras(stringA,stringB):
 	listaTokenA=stringA.replace(' ','\n').split(' ')
 	listaTokenB=stringB.replace(' ','\n').split(' ')
@@ -106,15 +107,15 @@ def codigoBotonPlagio():
 	print(textB)
 
 # Crear botones
-botonLex=Button(root, text="Lexical analysis", command=codigoBotonLexico())
+botonLex=Button(root, text="Lexical analysis", command=codigoBotonLexico)
 botonLex.config(cursor='hand2')
 botonLex.pack()
 
-botonSynct=Button(root, text="Syntactic analysis", command=codigoBotonSintactico())
+botonSynct=Button(root, text="Syntactic analysis", command=codigoBotonSintactico)
 botonSynct.config(cursor='hand2')
 botonSynct.pack()
 
-botonComp=Button(root, text="% plagiary", command=codigoBotonPlagio())
+botonComp=Button(root, text="% plagiary", command=codigoBotonPlagio)
 botonComp.config(cursor='hand2')
 botonComp.pack()
 
