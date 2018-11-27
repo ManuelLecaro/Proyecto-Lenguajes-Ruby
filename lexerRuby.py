@@ -70,6 +70,7 @@ t_DOUBLESECUENCEPOINT = r'..'
 
 
 
+
 def t_error(token):
     salida = "\ntype:" + token.type
     salida += "\nvalue:" + str(token.value)
@@ -232,18 +233,18 @@ def t_LINE(t):
 
 lex.lex()
 
-texter = ['CONSTANTE', '4local','_local', '$global','@instance', '@@clase_', '@peso',"self",'4',
-                'alias','def','for','if','and','super','lista',
-                '**','*','/','%','+','-',
-                '==','!=','>','<','>=','<=',
-                '=','+=','-=','*=','/=','%=','**=',
-                '&&','||','!'
-                ]
+#texter = ['CONSTANTE', '4local','_local', '$global','@instance', '@@clase_', '@peso',"self",'4',
+#                'alias','def','for','if','and','super','lista',
+#                '**','*','/','%','+','-',
+#               '==','!=','>','<','>=','<=',
+#               '=','+=','-=','*=','/=','%=','**=',
+#                '&&','||','!'
+#               ]
 
-for i in texter:
-    lex.input(i)
-    token = lex.token()
-    while token is not None:
-        print(token.type)
-        token = lex.token()
+#for i in texter:
+#    lex.input(i)
+#    token = lex.token()
+#   while token is not None:
+#        print(token.type)
+#        token = lex.token()
 

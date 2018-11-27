@@ -1,4 +1,6 @@
 from tkinter import *
+import ply.lex as lex
+import lexerRuby
 
 root=Tk()
 
@@ -72,18 +74,23 @@ codeB.config(yscrollcommand=scrollVertB.set)
 def get_textA():
 	return codeA.get("1.0",'end-1c')
 
-def codigoBoton1():
+def codigoBotonLexico():
 	lexAString.set('Correcto')
 	lexBString.set('Incorrecto')
 	textA = get_textA()
 	textB = get_textB()
-	print(textA)
-	print(textB)
+	listaA,listaB=separadorPalabaras(textA,textB)
+	print(listaA)
+	print(listaB)
+def separadorPalabaras(stringA,stringB):
+	listaTokenA=stringA.replace(' ','\n').split(' ')
+	listaTokenB=stringB.replace(' ','\n').split(' ')
+	return listaTokenA,listaTokenB
 
 def get_textB():
 	return codeB.get("1.0",'end-1c')
 
-def codigoBoton2():
+def codigoBotonSintactico():
 	synctAString.set('Correcto')
 	synctBString.set('Incorrecto')
 	textA = get_textA()
@@ -91,7 +98,7 @@ def codigoBoton2():
 	print(textA)
 	print(textB)
 
-def codigoBoton3():
+def codigoBotonPlagio():
 	plagString.set('100%')
 	textA = get_textA()
 	textB = get_textB()
@@ -99,15 +106,15 @@ def codigoBoton3():
 	print(textB)
 
 # Crear botones
-botonLex=Button(root, text="Lexical analysis", command=codigoBoton1)
+botonLex=Button(root, text="Lexical analysis", command=codigoBotonLexico())
 botonLex.config(cursor='hand2')
 botonLex.pack()
 
-botonSynct=Button(root, text="Syntactic analysis", command=codigoBoton2)
+botonSynct=Button(root, text="Syntactic analysis", command=codigoBotonSintactico())
 botonSynct.config(cursor='hand2')
 botonSynct.pack()
 
-botonComp=Button(root, text="% plagiary", command=codigoBoton3)
+botonComp=Button(root, text="% plagiary", command=codigoBotonPlagio())
 botonComp.config(cursor='hand2')
 botonComp.pack()
 
