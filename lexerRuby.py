@@ -21,12 +21,35 @@ tokens = ['LOCAL', 'GLOBAL', 'CONSTANTS', 'INSTANCEVAR','CLASSVAR','PSEUDO','ERR
         'LBRACK','RBRACK','COMA','DOBLEPOINT','DOUBLESECUENCEPOINT',
         ]+list(reservadas.values())
 
-t_LOCAL = r'^(_|[a-z])[a-zA-Z0-9_]*'
-t_GLOBAL = r'\$[a-zA-Z][a-zA-Z0-9_]*'
-t_CONSTANTS = r'^[A-Z][A-Z0-9_]*'
-t_INSTANCEVAR = r'^@[a-zA-Z][a-zA-Z0-9_]*'
-t_CLASSVAR = r'^@@[a-zA-Z][a-zA-Z0-9_]*'
-t_PSEUDO = r'self|true|false|nil|__FILE__|__LINE__'
+def t_LOCAL(t):
+    r'^(_|[a-z])([a-zA-Z0-9_])*'
+    t.type=reservadas.get(t.value,'LOCAL')
+    return t
+
+def t_GLOBAL(t):
+    r'\$[a-zA-Z]([a-zA-Z0-9_])*'
+    t.type=reservadas.get(t.value,'GLOBAL')
+    return t
+
+def t_CONSTANTS(t):
+    r'^[A-Z]([A-Z0-9_])*'
+    t.type=reservadas.get(t.value,'CONSTANTS')
+    return t
+
+def t_INSTANCEVAR(t):
+    r'^@[a-zA-Z]([a-zA-Z0-9_])*'
+    t.type=reservadas.get(t.value,'INSTANCEVAR')
+    return t
+
+def t_CLASSVAR(t):
+    r'^@@[a-zA-Z]([a-zA-Z0-9_])*'
+    t.type=reservadas.get(t.value,'CLASSVAR')
+    return t
+
+def t_PSEUDO(t):
+    r'self|true|false|nil|__FILE__|__LINE__'
+    t.type=reservadas.get(t.value,'PSEUDO')
+    return t
 
 #BASIC DATA TYPES
 t_NUMBER = r'[0-9]+((\.[0-9]+))?'
