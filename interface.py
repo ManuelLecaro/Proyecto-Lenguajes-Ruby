@@ -73,20 +73,48 @@ codeB.config(yscrollcommand=scrollVertB.set)
 # Codigo para el boton
 def get_textA():
 	return codeA.get("1.0",'end-1c')
-
+#Metodos para realizar el analisis lexico
 def codigoBotonLexico():
-	lexAString.set('Correcto')
-	lexBString.set('Incorrecto')
+
 	textA = get_textA()
 	textB = get_textB()
 	listaA,listaB=separadorPalabaras(textA,textB)
-	print(listaA)
-	print(listaB)
+	if len(listaA) > 0 and len(listaB) > 0:
+		lexAString.set('Correcto')
+		lexBString.set('Correcto')
+	if len(listaA) > 0 and len(listaB) == 0:
+		lexAString.set('Correcto')
+		lexBString.set('Incorrecto')
+	if len(listaA) == 0 and len(listaB) > 0:
+		lexAString.set('Incorrecto')
+		lexBString.set('Correcto')
+
 def separadorPalabaras(stringA,stringB):
-	listaTokenA=stringA.replace(' ','\n').split(' ')
-	listaTokenB=stringB.replace(' ','\n').split(' ')
+	listaTokenA=separadorLista(stringA.split('\n'))
+	listaTokenB=separadorLista(stringB.split('\n'))
 	return listaTokenA,listaTokenB
 
+def separadorLista(lista):
+	retorno=[]
+	vacio=[]
+	for iterador in lista:
+		listatemp=iterador.split(' ')
+		temp=[]
+		for palabra in listatemp:
+			token=generarToken(palabra)
+			if token == '':
+				return vacio
+			temp.append(token)
+		retorno.append(temp)
+	return retorno
+
+def generarToken(palabra):
+	lex.input(palabra)
+	token=lex.token()
+	if token is not None:
+		return token.type
+	return ''
+#--------------------------------------------------------------------------------------------
 def get_textB():
 	return codeB.get("1.0",'end-1c')
 
@@ -106,15 +134,15 @@ def codigoBotonPlagio():
 	print(textB)
 
 # Crear botones
-botonLex=Button(root, text="Lexical analysis", command=codigoBotonLexico())
+botonLex=Button(root, text="Lexical analysis", command=codigoBotonLexico)
 botonLex.config(cursor='hand2')
 botonLex.pack()
 
-botonSynct=Button(root, text="Syntactic analysis", command=codigoBotonSintactico())
+botonSynct=Button(root, text="Syntactic analysis", command=codigoBotonSintactico)
 botonSynct.config(cursor='hand2')
 botonSynct.pack()
 
-botonComp=Button(root, text="% plagiary", command=codigoBotonPlagio())
+botonComp=Button(root, text="% plagiary", command=codigoBotonPlagio)
 botonComp.config(cursor='hand2')
 botonComp.pack()
 
