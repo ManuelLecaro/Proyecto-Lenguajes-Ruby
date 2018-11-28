@@ -103,30 +103,29 @@ def p_error(p):
     p[0] = p[0]
 
 #Definicion de la estructuras de condicion y lazos
-def p_salto(p):
-    '''salto : \n '''
-    p[0] = p[1]
+
 
 # def p_puntos(p):
 #     '''puntos : ":"'''
 
 def p_if(p):
-    '''if : IF logic salto expr salto
-          | IF logic THEN salto expr salto
-          | if END
-          | if else END
+    '''if : IF logic expr END
+          | IF logic THEN expr END
+          | IF logic
+          | IF logic THEN
+          | if else
           | if elsif END'''
     p[0] = ASTsRuby.IfAST(p[1], p[2], p[3], p[4],p[5])
 
 def p_else(p):
-    '''else : ELSE salto expr salto '''
+    '''else : ELSE expr END'''
     p[0] = ASTsRuby.ElseAST(p[1],p[2],p[3],p[4])
 
 def p_elsif(p):
-    '''elsif : ELSIF logic salto expr salto
-             | ELSIF logic THEN salto expr salto
-             | elsif elsif
-             | elsif else'''
+    '''elsif : ELSIF logic expr
+             | ELSIF logic THEN expr
+             | ELSIF logic expr else
+             | ELSIF LOGIC expr elsif'''
     p[0] = ASTsRuby.ElseifAST(p[1], p[2], p[3], p[4],p[5])
 
 def p_code(p):
@@ -141,10 +140,10 @@ def p_code(p):
 #              | while while
 #              | BEGIN salto code END WHILE logic'''
 def p_while(p):
-    '''while : WHILE logic salto code salto END
-             | WHILE logic DO salto code END
+    '''while : WHILE logic code END
+             | WHILE logic DO code END
              | WHILE  logic DOBLEPOINT code END
-             | BEGIN salto code END WHILE logic'''
+             | BEGIN code END WHILE logic'''
     p[0] = ASTsRuby.WhileAST(p[1], p[2], p[3], p[4],p[5], p[6])
 
 def p_iterador(p):
@@ -157,10 +156,10 @@ def p_expresiones(p):
     p[0] = ASTsRuby.ExpAST(p[1], p[2], p[3])
 
 def p_for(p):
-    '''for : FOR iterador IN expresiones salto code salto END
-           | FOR iterador IN expresiones DO salto code salto END
-           | FOR iterador IN array salto code salto END
-           | FOR iterador IN array DO salto code salto END'''
+    '''for : FOR iterador IN expresiones code END
+           | FOR iterador IN expresiones DO code END
+           | FOR iterador IN array code END
+           | FOR iterador IN array DO code END'''
     p[0] = ASTsRuby.ForAST(p[1], p[2], p[3], p[4],p[5], p[6], p[7], p[8])    
 
 def p_array(p):
