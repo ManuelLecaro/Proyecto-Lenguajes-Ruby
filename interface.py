@@ -1,4 +1,6 @@
-from tkinter import * import ply.lex as lex import lexerRuby
+from tkinter import *
+import ply.lex as lex
+import lexerRuby
 
 root=Tk()
 
