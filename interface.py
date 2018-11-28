@@ -1,6 +1,4 @@
-from tkinter import *
-import ply.lex as lex
-import lexerRuby
+from tkinter import * import ply.lex as lex import lexerRuby
 
 root=Tk()
 
@@ -88,6 +86,10 @@ def codigoBotonLexico():
 	if len(listaA) == 0 and len(listaB) > 0:
 		lexAString.set('Incorrecto')
 		lexBString.set('Correcto')
+
+	print(listaA)
+	print(listaB)
+
 
 def separadorPalabaras(stringA,stringB):
 	listaTokenA=separadorLista(stringA.split('\n'))
