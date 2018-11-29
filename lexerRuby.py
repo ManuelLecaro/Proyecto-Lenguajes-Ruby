@@ -18,7 +18,7 @@ tokens = ['LOCAL', 'GLOBAL', 'CONSTANTS', 'INSTANCEVAR','CLASSVAR','PSEUDO','ERR
         #BASIC LOGICAL OPERATORS
         'ANDLOG','ORLOG','NOTLOG',
         #OTHERS
-        'LBRACK','RBRACK','COMA','DOBLEPOINT','DOUBLESECUENCEPOINT',
+        'LBRACK','RBRACK','COMA','DOBLEPOINT','DOUBLESECUENCEPOINT', "NEWLINE"
         ]+list(reservadas.values())
 
 def t_LOCAL(t):
@@ -50,6 +50,9 @@ def t_PSEUDO(t):
     r'self|true|false|nil|__FILE__|__LINE__'
     t.type=reservadas.get(t.value,'PSEUDO')
     return t
+
+def t_NEWLINE(t):
+    r'\n+'    
 
 #BASIC DATA TYPES
 t_NUMBER = r'[0-9]+((\.[0-9]+))?'
@@ -146,7 +149,7 @@ def t_ELSIF(t):
     t.type=reservadas.get(t.value,'ELSIF')
     return t
 def t_END(t):
-    r'[a-z\_]+'
+    r'[a-z]+'
     t.type=reservadas.get(t.value,'END')
     return t
 def t_ENSURE(t):

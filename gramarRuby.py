@@ -100,11 +100,10 @@ def p_logcompare(p):
 
 def p_error(p):
     '''error: error'''
-    p[0] = p[0]
 
 #Definicion de la estructuras de condicion y lazos
 def p_salto(p):
-    '''salto : \n '''
+    '''salto : NEWLINE '''
     p[0] = p[1]
 
 # def p_puntos(p):
@@ -141,7 +140,7 @@ def p_code(p):
 #              | while while
 #              | BEGIN salto code END WHILE logic'''
 def p_while(p):
-    '''while : WHILE logic salto code salto END
+    '''while : WHILE logic code END
              | WHILE logic DO salto code END
              | WHILE  logic DOBLEPOINT code END
              | BEGIN salto code END WHILE logic'''
@@ -202,4 +201,7 @@ def p_defslice(p):
     p[0] = ASTsRuby.DefSlideAST(p[1], p[2], p[3])
     
 
-yacc.yacc()
+parser = yacc.yacc()
+
+print(parser.parse("while i < 10 do \n a = 1 end"))
+
