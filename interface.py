@@ -138,7 +138,7 @@ def codigoBotonSintactico():
 		synctAString.set('Correcto')
 		synctBString.set('Incorrecto')
 	if len(listaA) == 0 and len(listaB) > 0:
-		synctAString.set('Inorrecto')
+		synctAString.set('Incorrecto')
 		synctBString.set('Correcto')
 
 def validarSintaxis(lista):
@@ -152,7 +152,7 @@ def validarSintaxis(lista):
 	return listRetorno
 
 def analizadorSintactico(linea):
-	analizador=yacc.yacc()
+	analizador=gramarRuby.parser
 	arbol=analizador.parse(linea)
 	if arbol is not None:
 		return arbol

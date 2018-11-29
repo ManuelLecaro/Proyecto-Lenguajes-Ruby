@@ -22,7 +22,7 @@ tokens = ['LOCAL', 'GLOBAL', 'CONSTANTS', 'INSTANCEVAR','CLASSVAR','PSEUDO','ERR
         ]+list(reservadas.values())
 
 def t_LOCAL(t):
-    r'^(_|[a-z])([a-zA-Z0-9_])*'
+    r'(_|[a-z])([a-zA-Z0-9_])*'
     t.type=reservadas.get(t.value,'LOCAL')
     return t
 
@@ -32,17 +32,17 @@ def t_GLOBAL(t):
     return t
 
 def t_CONSTANTS(t):
-    r'^[A-Z]([A-Z0-9_])*'
+    r'[A-Z]([A-Z0-9_])*'
     t.type=reservadas.get(t.value,'CONSTANTS')
     return t
 
 def t_INSTANCEVAR(t):
-    r'^@[a-zA-Z]([a-zA-Z0-9_])*'
+    r'@[a-zA-Z]([a-zA-Z0-9_])*'
     t.type=reservadas.get(t.value,'INSTANCEVAR')
     return t
 
 def t_CLASSVAR(t):
-    r'^@@[a-zA-Z]([a-zA-Z0-9_])*'
+    r'@@[a-zA-Z]([a-zA-Z0-9_])*'
     t.type=reservadas.get(t.value,'CLASSVAR')
     return t
 
@@ -55,11 +55,9 @@ def t_NEWLINE(t):
     r'\n+'    
 
 #BASIC DATA TYPES
-t_NUMBER = r'[0-9]+((\.[0-9]+))?'
 t_STRING = r'[a-z\_]+'
 t_BOOLEAN = r'true|false'
-t_INT = r'^[0-9]+'
-t_FLOAT = r'^[0,9]*.[0-9]+'
+
 
 #ARITHMETIC OPERATORS
 t_EXP = r'\*\*'
@@ -67,7 +65,7 @@ t_MUL = r'\*'
 t_DIV = r'/'
 t_MOD =  r'%'
 t_ADD =  r'\+'
-t_SUB = r'^-'
+t_SUB = r'-'
 #BASIC COMPARISON OPERATORS
 t_EQUAL = r'=='
 t_NOTEQ = r'!='
@@ -95,7 +93,10 @@ t_DOBLEPOINT = r'\:'
 t_DOUBLESECUENCEPOINT = r'\.\.'
 
 
-
+def t_NUMBER(t):
+     r'[0-9]+((\.[0-9]+))?'
+     t.value = float(t.value)    
+     return t
 
 def t_error(token):
     salida = "\ntype:" + token.type

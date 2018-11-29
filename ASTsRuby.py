@@ -87,6 +87,12 @@ class ExpAST(AST):
 class ForAST(AST):
     _fields = ["for", "iterator", "in", "expr", "salto", "code", "salto","end"]
 
+class FinalAST(AST):
+    _fields = ["Then","expr"]
+
+class CodeAST(AST):
+    _fields = ["code","code"]
+
 class ArrayAST(AST):
     _fields = ["elemento","coma","elemento"]
 
@@ -101,3 +107,9 @@ class SlideAST(AST):
 
 class DefSlideAST(AST):
     _fields = ["int", "double", "int"]
+
+class NumberAST(AST):
+    _fields = ["number"]
+
+class StringAST(AST):
+    _fields = ["string"]
