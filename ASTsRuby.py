@@ -72,6 +72,12 @@ class ElseifAST_t(AST):
 class WhileAST(AST):
     _fields = ["while", "logic", "salto", "code", "salto", "end"]
 
+class WhileAST_s(AST):
+    _fields = ["while", "logic", "salto", "code", "salto"]
+
+class WhileAST_c(AST):
+    _fields = ["while", "logic", "salto", "code"]
+
 class IteratorAST(AST):
     _fields = ["termino", "puntos", "termino"]
 

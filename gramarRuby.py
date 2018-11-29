@@ -1,14 +1,27 @@
 import ply.yacc as yacc
 import lexerRuby
 import ASTsRuby
+
 tokens=lexerRuby.tokens
 
-#Definición de variables, asignación
+def p_while(p):
+    '''while : WHILE logical code END
+             | WHILE logical DO salto code salto END
+             | WHILE logical DOBLEPOINT salto code salto END
+             | BEGIN code END WHILE logical'''
+    if(len(p)==7):
+            p[0] = ASTsRuby.WhileAST(p[1], p[2], p[3], p[4],p[5], p[6])
+    if(len(p)==6):
+            p[0] = ASTsRuby.WhileAST_s(p[1], p[2], p[3], p[4],p[5])
+    if(len(p)==5):
+            p[0] = ASTsRuby.WhileAST_c(p[1], p[2], p[3], p[4],p[5])
 
 def p_assign(p):
     '''assign : variable ASS expr
-              | variable ASS sexpr'''
+              | variable ASS sexpr
+              | variable ASS array'''
     p[0] = ASTsRuby.Assign(p[1], p[2], p[3])
+    print(p[0])
 
 def p_math(p):
     '''math : term arith term
@@ -16,18 +29,17 @@ def p_math(p):
             | variable asig term'''
     p[0] = ASTsRuby.Math(p[1],p[2],p[3])
 
-def p_logic(p):
-    '''logic : logic_term comparison BOOLEAN
-             | logic_term comparison logic_term
-             | logic_term comparison logic'''
-    p[0] = ASTsRuby.Logical(p[1], p[2], p[3])
-
-def p_logic_term(p):
-    '''logic_term : variable
-                  | term
-                  | sterm
-                  '''
-    p[0] = p[1]
+def p_logical(p):
+    '''logical : term comparison term
+               | term comparison logical
+               | variable comparison term
+               | variable comparison BOOLEAN
+               | logical logcompare logical
+               | BOOLEAN'''
+    if(len(p)==3):
+        ASTsRuby.Logical(p[1], p[2], p[3])
+    else:
+        p[0] = p[1]
 
 def p_variable(p):
     '''variable : LOCAL
@@ -51,7 +63,10 @@ def p_expr(p):
     '''expr :  math
              | term
              | variable
-             | assign'''
+             | assign
+             | array
+             | slice
+             | index'''
     p[0] = p[1]
     
 
@@ -100,19 +115,18 @@ def p_logcompare(p):
                   | NOT'''
     p[0] = p[1] 
 
-def p_error(p):
-    '''error: error'''
 
-#Definicion de la estructuras de condicion y lazos
+"""Definicion de la estructuras de condicion y lazos"""
+
 def p_salto(p):
     '''salto : NEWLINE '''
     p[0] = p[1]
 
 def p_if(p):
-    '''if : IF logic expr END
-          | IF logic THEN expr END
-          | IF logic
-          | IF logic THEN
+    '''if : IF logical expr END
+          | IF logical THEN expr END
+          | IF logical
+          | IF logical THEN
           | if else
           | if elsif END'''
     if(len(p)==6):
@@ -129,27 +143,30 @@ def p_else(p):
     p[0] = ASTsRuby.ElseAST(p[1],p[2],p[3])
 
 def p_elsif(p):
-    '''elsif : ELSIF logic expr
-             | ELSIF logic THEN expr
-             | ELSIF logic expr else
-             | ELSIF logic expr elsif'''
+    '''elsif : ELSIF logical final'''
     if(len(p)==5):
         p[0] = ASTsRuby.ElseifAST(p[1], p[2], p[3], p[4])
     if(len(p)==4):
         p[0] = ASTsRuby.ElseifAST_t(p[1], p[2], p[3])
 
+def p_final(p):
+    '''final : expr
+             | THEN expr
+             | expr else
+             | expr elsif '''
+
 def p_code(p):
     '''code : expr
-            | if'''
+            | if
+            | while
+            | expresiones
+            | for
+            | assign
+            | math
+            | code code'''
     p[0] = p[1]
 
-def p_while(p):
-    '''while : WHILE logic code END
-             | WHILE logic DO salto code END
-             | WHILE  logic DOBLEPOINT code END
-             | BEGIN code END WHILE logic'''
-    if(len(p)==7):
-            p[0] = ASTsRuby.WhileAST(p[1], p[2], p[3], p[4],p[5], p[6])
+
 
 def p_iterador(p):
     '''iterador : variable
@@ -167,10 +184,6 @@ def p_for(p):
            | FOR iterador IN array DO code END'''
     p[0] = ASTsRuby.ForAST(p[1], p[2], p[3], p[4],p[5], p[6], p[7], p[8])    
 
-def p_assarray(p):
-    '''assarray : variable ASS array
-                | array'''
-    p[0] = ASTsRuby.AsArrayAST(p[1], p[2], p[3])
 
 def p_array(p):
     '''array : LBRACK defarray RBRACK'''
@@ -203,8 +216,17 @@ def p_defslice(p):
                     | INT DOBLEPOINT
                     | DOBLEPOINT INT'''
     p[0] = ASTsRuby.DefSlideAST(p[1], p[2], p[3])
+
+def p_error(p):
+    if(p):
+        print("SYNTACTIC ERROR: line:", p.lexer.lineno, "position:", p.lexpos, "Syntax error:", p.value)
+    else:
+        print("SYNTACTIC ERROR: Unknown syntax error")
+
     
 parser = yacc.yacc()
 
-print(parser.parse("a > 12"))
+string =  'a = 8'
+
+print(parser.parse(string))
 
