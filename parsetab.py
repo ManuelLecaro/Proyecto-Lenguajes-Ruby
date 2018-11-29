@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ADD ADDASS ALIAS AND ANDLOG ASS BEGIN BOOLEAN BREAK CASE CLASS CLASSVAR COMA CONSTANTS DEF DEFINED DIV DIVASS DO DOBLEPOINT DOUBLESECUENCEPOINT ELSE ELSIF END ENSURE EQUAL ERROR EXP EXPASS FALSE FILE FLOAT FOR GLOBAL GREATHER GREATHEREQ IF IN INSTANCEVAR INT LBRACK LINE LOCAL LOWER LOWEREQ MOD MODASS MODULE MUL MULASS NEWLINE NEXT NIL NOT NOTEQ NOTLOG NUMBER OR ORLOG PSEUDO RBRACK REDO RESCUE RETRY RETURN SELF STRING SUB SUBASS SUPER THEN TRUE UNDEF UNLESS UNTIL WHEN WHILE YIELDassign : variable ASS expr\n              | variable ASS sexprmath : term arith term\n            | term arith math\n            | variable asig termlogic : logic_term comparison BOOLEAN\n             | logic_term comparison logic_term\n             | logic_term comparison logiclogic_term : variable\n                  | term\n                  | sterm\n                  variable : LOCAL\n                | GLOBAL \n                | CONSTANTS \n                | INSTANCEVAR \n                | CLASSVARasig : ASS\n            | ADDASS\n            | SUBASS\n            | MULASS\n            | DIVASS\n            | MODASS\n            | EXPASSexpr :  math\n             | term\n             | variable\n             | assignsexpr : sterm MUL term\n             | sterm ADD sexpr\n             | stermterm : NUMBERsterm : STRINGarith : EXP\n             | MUL\n             | DIV\n             | MOD\n             | ADD\n             | SUBcomparison : EQUAL\n                  | NOTEQ\n                  | GREATHER\n                  | LOWER\n                  | GREATHEREQ\n                  | LOWEREQlogcompare : ANDLOG\n                  | ORLOG\n                  | NOTLOG\n                  | AND\n                  | OR\n                  | NOTsalto : NEWLINE if : IF logic expr END\n          | IF logic THEN expr END\n          | IF logic\n          | IF logic THEN\n          | if else\n          | if elsif ENDelse : ELSE expr ENDelsif : ELSIF logic expr\n             | ELSIF logic THEN expr\n             | ELSIF logic expr else\n             | ELSIF logic expr elsifcode : expr\n            | ifwhile : WHILE logic code END\n             | WHILE logic DO salto code END\n             | WHILE  logic DOBLEPOINT code END\n             | BEGIN code END WHILE logiciterador : variable\n                | variable "," variableexpresiones : term DOUBLESECUENCEPOINT termfor : FOR iterador IN expresiones code END\n           | FOR iterador IN expresiones DO code END\n           | FOR iterador IN array code END\n           | FOR iterador IN array DO code ENDassarray : variable ASS array\n                | arrayarray : LBRACK defarray RBRACKdefarray : NUMBER \n                | NUMBER COMA defarray\n                | STRING\n                | STRING COMA defarray\n                | INT\n                | INT COMA defarray\n                | FLOAT\n                | FLOAT COMA defarray\n                | BOOLEAN\n                | BOOLEAN COMA defarrayindex : variable LBRACK INT RBRACKslice : variable LBRACK defslice RBRACKdefslice : INT DOBLEPOINT INT\n                    | INT DOBLEPOINT\n                    | DOBLEPOINT INT'
+_lr_signature = 'ADD ADDASS ALIAS AND ANDLOG ASS BEGIN BOOLEAN BREAK CASE CLASS CLASSVAR COMA CONSTANTS DEF DEFINED DIV DIVASS DO DOBLEPOINT DOUBLESECUENCEPOINT ELSE ELSIF END ENSURE EQUAL ERROR EXP EXPASS FALSE FILE FLOAT FOR GLOBAL GREATHER GREATHEREQ IF IN INSTANCEVAR INT LBRACK LINE LOCAL LOWER LOWEREQ MOD MODASS MODULE MUL MULASS NEWLINE NEXT NIL NOT NOTEQ NOTLOG NUMBER OR ORLOG PSEUDO RBRACK REDO RESCUE RETRY RETURN SELF STRING SUB SUBASS SUPER THEN TRUE UNDEF UNLESS UNTIL WHEN WHILE YIELDassign : variable ASS expr\n              | variable ASS sexprmath : term arith term\n            | term arith math\n            | variable asig termlogic : logic_term comparison BOOLEAN\n             | logic_term comparison logic_term\n             | logic_term comparison logiclogic_term : variable\n                  | term\n                  | sterm\n                  variable : LOCAL\n                | GLOBAL \n                | CONSTANTS \n                | INSTANCEVAR \n                | CLASSVARasig : ASS\n            | ADDASS\n            | SUBASS\n            | MULASS\n            | DIVASS\n            | MODASS\n            | EXPASSexpr :  math\n             | term\n             | variable\n             | assignsexpr : sterm MUL term\n             | sterm ADD sexpr\n             | stermterm : NUMBERsterm : STRINGarith : EXP\n             | MUL\n             | DIV\n             | MOD\n             | ADD\n             | SUBcomparison : EQUAL\n                  | NOTEQ\n                  | GREATHER\n                  | LOWER\n                  | GREATHEREQ\n                  | LOWEREQlogcompare : ANDLOG\n                  | ORLOG\n                  | NOTLOG\n                  | AND\n                  | OR\n                  | NOTsalto : NEWLINE else : ELSE expr ENDelsif : ELSIF logic expr\n             | ELSIF logic THEN expr\n             | ELSIF logic expr else\n             | ELSIF logic expr elsifif : IF logic expr END\n          | IF logic THEN expr END\n          | IF logic\n          | IF logic THEN\n          | if else\n          | if elsif ENDcode : expr\n            | ifwhile : WHILE logic code END\n             | WHILE logic DO salto code END\n             | WHILE  logic DOBLEPOINT code END\n             | BEGIN code END WHILE logiciterador : variable\n                | variable "," variableexpresiones : term DOUBLESECUENCEPOINT termfor : FOR iterador IN expresiones code END\n           | FOR iterador IN expresiones DO code END\n           | FOR iterador IN array code END\n           | FOR iterador IN array DO code ENDassarray : variable ASS array\n                | arrayarray : LBRACK defarray RBRACKdefarray : NUMBER \n                | NUMBER COMA defarray\n                | STRING\n                | STRING COMA defarray\n                | INT\n                | INT COMA defarray\n                | FLOAT\n                | FLOAT COMA defarray\n                | BOOLEAN\n                | BOOLEAN COMA defarrayindex : variable LBRACK INT RBRACKslice : variable LBRACK defslice RBRACKdefslice : INT DOBLEPOINT INT\n                    | INT DOBLEPOINT\n                    | DOBLEPOINT INT'
     
-_lr_action_items = {'LOCAL':([0,8,19,26,27,28,29,30,31,32,],[3,3,3,3,-33,-34,-35,-36,-37,-38,]),'GLOBAL':([0,8,19,26,27,28,29,30,31,32,],[4,4,4,4,-33,-34,-35,-36,-37,-38,]),'CONSTANTS':([0,8,19,26,27,28,29,30,31,32,],[5,5,5,5,-33,-34,-35,-36,-37,-38,]),'INSTANCEVAR':([0,8,19,26,27,28,29,30,31,32,],[6,6,6,6,-33,-34,-35,-36,-37,-38,]),'CLASSVAR':([0,8,19,26,27,28,29,30,31,32,],[7,7,7,7,-33,-34,-35,-36,-37,-38,]),'$end':([1,3,4,5,6,7,9,10,11,12,13,14,15,16,17,35,36,37,39,40,],[0,-12,-13,-14,-15,-16,-26,-1,-2,-24,-25,-27,-30,-31,-32,-5,-3,-4,-28,-29,]),'ASS':([2,3,4,5,6,7,9,38,],[8,-12,-13,-14,-15,-16,19,41,]),'ADDASS':([3,4,5,6,7,9,38,],[-12,-13,-14,-15,-16,20,20,]),'SUBASS':([3,4,5,6,7,9,38,],[-12,-13,-14,-15,-16,21,21,]),'MULASS':([3,4,5,6,7,9,38,],[-12,-13,-14,-15,-16,22,22,]),'DIVASS':([3,4,5,6,7,9,38,],[-12,-13,-14,-15,-16,23,23,]),'MODASS':([3,4,5,6,7,9,38,],[-12,-13,-14,-15,-16,24,24,]),'EXPASS':([3,4,5,6,7,9,38,],[-12,-13,-14,-15,-16,25,25,]),'NUMBER':([8,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,41,],[16,16,16,-18,-19,-20,-21,-22,-23,16,-33,-34,-35,-36,-37,-38,16,-17,]),'STRING':([8,19,34,],[17,17,17,]),'EXP':([13,16,36,],[27,-31,27,]),'MUL':([13,15,16,17,36,],[28,33,-31,-32,28,]),'DIV':([13,16,36,],[29,-31,29,]),'MOD':([13,16,36,],[30,-31,30,]),'ADD':([13,15,16,17,36,],[31,34,-31,-32,31,]),'SUB':([13,16,36,],[32,-31,32,]),}
+_lr_action_items = {'NUMBER':([8,18,19,20,21,22,23,24,25,27,28,29,30,31,32,33,34,41,],[12,-38,-34,-33,12,-37,-36,-35,12,-23,12,12,-18,-19,-21,-22,-20,-17,]),'$end':([1,2,4,5,6,7,9,10,11,12,13,14,15,16,17,35,36,38,39,40,],[-13,-15,-12,0,-16,-14,-25,-1,-30,-31,-24,-26,-32,-2,-27,-3,-4,-28,-29,-5,]),'GLOBAL':([0,8,18,19,20,21,22,23,24,28,],[1,1,-38,-34,-33,1,-37,-36,-35,1,]),'MUL':([9,11,12,15,35,],[19,25,-31,-32,19,]),'EXPASS':([1,2,4,6,7,14,37,],[-13,-15,-12,-16,-14,27,27,]),'STRING':([8,26,28,],[15,15,15,]),'ASS':([1,2,3,4,6,7,14,37,],[-13,-15,8,-12,-16,-14,28,41,]),'ADDASS':([1,2,4,6,7,14,37,],[-13,-15,-12,-16,-14,30,30,]),'MULASS':([1,2,4,6,7,14,37,],[-13,-15,-12,-16,-14,34,34,]),'DIV':([9,12,35,],[24,-31,24,]),'SUBASS':([1,2,4,6,7,14,37,],[-13,-15,-12,-16,-14,31,31,]),'DIVASS':([1,2,4,6,7,14,37,],[-13,-15,-12,-16,-14,32,32,]),'CONSTANTS':([0,8,18,19,20,21,22,23,24,28,],[7,7,-38,-34,-33,7,-37,-36,-35,7,]),'INSTANCEVAR':([0,8,18,19,20,21,22,23,24,28,],[2,2,-38,-34,-33,2,-37,-36,-35,2,]),'ADD':([9,11,12,15,35,],[22,26,-31,-32,22,]),'LOCAL':([0,8,18,19,20,21,22,23,24,28,],[4,4,-38,-34,-33,4,-37,-36,-35,4,]),'MODASS':([1,2,4,6,7,14,37,],[-13,-15,-12,-16,-14,33,33,]),'SUB':([9,12,35,],[18,-31,18,]),'MOD':([9,12,35,],[23,-31,23,]),'CLASSVAR':([0,8,18,19,20,21,22,23,24,28,],[6,6,-38,-34,-33,6,-37,-36,-35,6,]),'EXP':([9,12,35,],[20,-31,20,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'assign':([0,8,19,],[1,14,14,]),'variable':([0,8,19,26,],[2,9,9,38,]),'expr':([8,19,],[10,10,]),'sexpr':([8,19,34,],[11,11,40,]),'math':([8,19,26,],[12,12,37,]),'term':([8,18,19,26,33,],[13,35,13,36,39,]),'sterm':([8,19,34,],[15,15,15,]),'asig':([9,38,],[18,18,]),'arith':([13,36,],[26,26,]),}
+_lr_goto_items = {'term':([8,21,25,28,29,],[9,35,38,9,40,]),'math':([8,21,28,],[13,36,13,]),'expr':([8,28,],[10,10,]),'arith':([9,35,],[21,21,]),'variable':([0,8,21,28,],[3,14,37,14,]),'sterm':([8,26,28,],[11,11,11,]),'asig':([14,37,],[29,29,]),'sexpr':([8,26,28,],[16,39,16,]),'assign':([0,8,28,],[5,17,17,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -78,46 +78,46 @@ _lr_productions = [
   ('logcompare -> OR','logcompare',1,'p_logcompare','gramarRuby.py',99),
   ('logcompare -> NOT','logcompare',1,'p_logcompare','gramarRuby.py',100),
   ('salto -> NEWLINE','salto',1,'p_salto','gramarRuby.py',108),
-  ('if -> IF logic expr END','if',4,'p_if','gramarRuby.py',112),
-  ('if -> IF logic THEN expr END','if',5,'p_if','gramarRuby.py',113),
-  ('if -> IF logic','if',2,'p_if','gramarRuby.py',114),
-  ('if -> IF logic THEN','if',3,'p_if','gramarRuby.py',115),
-  ('if -> if else','if',2,'p_if','gramarRuby.py',116),
-  ('if -> if elsif END','if',3,'p_if','gramarRuby.py',117),
   ('else -> ELSE expr END','else',3,'p_else','gramarRuby.py',128),
   ('elsif -> ELSIF logic expr','elsif',3,'p_elsif','gramarRuby.py',132),
   ('elsif -> ELSIF logic THEN expr','elsif',4,'p_elsif','gramarRuby.py',133),
   ('elsif -> ELSIF logic expr else','elsif',4,'p_elsif','gramarRuby.py',134),
   ('elsif -> ELSIF logic expr elsif','elsif',4,'p_elsif','gramarRuby.py',135),
-  ('code -> expr','code',1,'p_code','gramarRuby.py',142),
-  ('code -> if','code',1,'p_code','gramarRuby.py',143),
-  ('while -> WHILE logic code END','while',4,'p_while','gramarRuby.py',147),
-  ('while -> WHILE logic DO salto code END','while',6,'p_while','gramarRuby.py',148),
-  ('while -> WHILE logic DOBLEPOINT code END','while',5,'p_while','gramarRuby.py',149),
-  ('while -> BEGIN code END WHILE logic','while',5,'p_while','gramarRuby.py',150),
-  ('iterador -> variable','iterador',1,'p_iterador','gramarRuby.py',155),
-  ('iterador -> variable , variable','iterador',3,'p_iterador','gramarRuby.py',156),
-  ('expresiones -> term DOUBLESECUENCEPOINT term','expresiones',3,'p_expresiones','gramarRuby.py',160),
-  ('for -> FOR iterador IN expresiones code END','for',6,'p_for','gramarRuby.py',164),
-  ('for -> FOR iterador IN expresiones DO code END','for',7,'p_for','gramarRuby.py',165),
-  ('for -> FOR iterador IN array code END','for',6,'p_for','gramarRuby.py',166),
-  ('for -> FOR iterador IN array DO code END','for',7,'p_for','gramarRuby.py',167),
-  ('assarray -> variable ASS array','assarray',3,'p_assarray','gramarRuby.py',171),
-  ('assarray -> array','assarray',1,'p_assarray','gramarRuby.py',172),
-  ('array -> LBRACK defarray RBRACK','array',3,'p_array','gramarRuby.py',176),
-  ('defarray -> NUMBER','defarray',1,'p_defarray','gramarRuby.py',180),
-  ('defarray -> NUMBER COMA defarray','defarray',3,'p_defarray','gramarRuby.py',181),
-  ('defarray -> STRING','defarray',1,'p_defarray','gramarRuby.py',182),
-  ('defarray -> STRING COMA defarray','defarray',3,'p_defarray','gramarRuby.py',183),
-  ('defarray -> INT','defarray',1,'p_defarray','gramarRuby.py',184),
-  ('defarray -> INT COMA defarray','defarray',3,'p_defarray','gramarRuby.py',185),
-  ('defarray -> FLOAT','defarray',1,'p_defarray','gramarRuby.py',186),
-  ('defarray -> FLOAT COMA defarray','defarray',3,'p_defarray','gramarRuby.py',187),
-  ('defarray -> BOOLEAN','defarray',1,'p_defarray','gramarRuby.py',188),
-  ('defarray -> BOOLEAN COMA defarray','defarray',3,'p_defarray','gramarRuby.py',189),
-  ('index -> variable LBRACK INT RBRACK','index',4,'p_index','gramarRuby.py',194),
-  ('slice -> variable LBRACK defslice RBRACK','slice',4,'p_slice','gramarRuby.py',198),
-  ('defslice -> INT DOBLEPOINT INT','defslice',3,'p_defslice','gramarRuby.py',202),
-  ('defslice -> INT DOBLEPOINT','defslice',2,'p_defslice','gramarRuby.py',203),
-  ('defslice -> DOBLEPOINT INT','defslice',2,'p_defslice','gramarRuby.py',204),
+  ('if -> IF logic expr END','if',4,'p_if','gramarRuby.py',142),
+  ('if -> IF logic THEN expr END','if',5,'p_if','gramarRuby.py',143),
+  ('if -> IF logic','if',2,'p_if','gramarRuby.py',144),
+  ('if -> IF logic THEN','if',3,'p_if','gramarRuby.py',145),
+  ('if -> if else','if',2,'p_if','gramarRuby.py',146),
+  ('if -> if elsif END','if',3,'p_if','gramarRuby.py',147),
+  ('code -> expr','code',1,'p_code','gramarRuby.py',153),
+  ('code -> if','code',1,'p_code','gramarRuby.py',154),
+  ('while -> WHILE logic code END','while',4,'p_while','gramarRuby.py',158),
+  ('while -> WHILE logic DO salto code END','while',6,'p_while','gramarRuby.py',159),
+  ('while -> WHILE logic DOBLEPOINT code END','while',5,'p_while','gramarRuby.py',160),
+  ('while -> BEGIN code END WHILE logic','while',5,'p_while','gramarRuby.py',161),
+  ('iterador -> variable','iterador',1,'p_iterador','gramarRuby.py',166),
+  ('iterador -> variable , variable','iterador',3,'p_iterador','gramarRuby.py',167),
+  ('expresiones -> term DOUBLESECUENCEPOINT term','expresiones',3,'p_expresiones','gramarRuby.py',171),
+  ('for -> FOR iterador IN expresiones code END','for',6,'p_for','gramarRuby.py',175),
+  ('for -> FOR iterador IN expresiones DO code END','for',7,'p_for','gramarRuby.py',176),
+  ('for -> FOR iterador IN array code END','for',6,'p_for','gramarRuby.py',177),
+  ('for -> FOR iterador IN array DO code END','for',7,'p_for','gramarRuby.py',178),
+  ('assarray -> variable ASS array','assarray',3,'p_assarray','gramarRuby.py',182),
+  ('assarray -> array','assarray',1,'p_assarray','gramarRuby.py',183),
+  ('array -> LBRACK defarray RBRACK','array',3,'p_array','gramarRuby.py',187),
+  ('defarray -> NUMBER','defarray',1,'p_defarray','gramarRuby.py',191),
+  ('defarray -> NUMBER COMA defarray','defarray',3,'p_defarray','gramarRuby.py',192),
+  ('defarray -> STRING','defarray',1,'p_defarray','gramarRuby.py',193),
+  ('defarray -> STRING COMA defarray','defarray',3,'p_defarray','gramarRuby.py',194),
+  ('defarray -> INT','defarray',1,'p_defarray','gramarRuby.py',195),
+  ('defarray -> INT COMA defarray','defarray',3,'p_defarray','gramarRuby.py',196),
+  ('defarray -> FLOAT','defarray',1,'p_defarray','gramarRuby.py',197),
+  ('defarray -> FLOAT COMA defarray','defarray',3,'p_defarray','gramarRuby.py',198),
+  ('defarray -> BOOLEAN','defarray',1,'p_defarray','gramarRuby.py',199),
+  ('defarray -> BOOLEAN COMA defarray','defarray',3,'p_defarray','gramarRuby.py',200),
+  ('index -> variable LBRACK INT RBRACK','index',4,'p_index','gramarRuby.py',205),
+  ('slice -> variable LBRACK defslice RBRACK','slice',4,'p_slice','gramarRuby.py',209),
+  ('defslice -> INT DOBLEPOINT INT','defslice',3,'p_defslice','gramarRuby.py',213),
+  ('defslice -> INT DOBLEPOINT','defslice',2,'p_defslice','gramarRuby.py',214),
+  ('defslice -> DOBLEPOINT INT','defslice',2,'p_defslice','gramarRuby.py',215),
 ]

@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46d6b755-f58b-42a8-adec-41e6fa41d679" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/gramarRuby.py" afterPath="$PROJECT_DIR$/gramarRuby.py" />
-      <change beforePath="$PROJECT_DIR$/interface.py" afterPath="$PROJECT_DIR$/interface.py" />
       <change beforePath="$PROJECT_DIR$/parser.out" afterPath="$PROJECT_DIR$/parser.out" />
+      <change beforePath="$PROJECT_DIR$/parsetab.py" afterPath="$PROJECT_DIR$/parsetab.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,8 +17,8 @@
       <file leaf-file-name="gramarRuby.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gramarRuby.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="207" column="0" lean-forward="true" selection-start-line="207" selection-start-column="0" selection-end-line="207" selection-end-column="0" />
+            <state relative-caret-position="279">
+              <caret line="218" column="0" lean-forward="true" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -30,8 +28,10 @@
         <entry file="file://$PROJECT_DIR$/ASTsRuby.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1377">
-              <caret line="81" column="38" lean-forward="false" selection-start-line="81" selection-start-column="38" selection-end-line="81" selection-end-column="38" />
-              <folding />
+              <caret line="96" column="38" lean-forward="false" selection-start-line="96" selection-start-column="38" selection-end-line="96" selection-end-column="38" />
+              <folding>
+                <marker date="1543459578570" expanded="true" signature="1920:1934" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -53,7 +53,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-3721">
               <caret line="33" column="10" lean-forward="false" selection-start-line="33" selection-start-column="10" selection-end-line="33" selection-end-column="10" />
-              <folding />
+              <folding>
+                <marker date="1543459578572" expanded="true" signature="6762:6789" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -259,14 +261,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lexerRuby.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4080">
-          <caret line="240" column="29" lean-forward="false" selection-start-line="240" selection-start-column="29" selection-end-line="240" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gramarRuby.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2720">
@@ -290,7 +284,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4148">
           <caret line="244" column="15" lean-forward="true" selection-start-line="244" selection-start-column="15" selection-end-line="244" selection-end-column="16" />
-          <folding />
+          <folding>
+            <marker date="1543459578572" expanded="true" signature="6762:6789" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -315,7 +311,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2193">
           <caret line="129" column="15" lean-forward="false" selection-start-line="129" selection-start-column="15" selection-end-line="129" selection-end-column="15" />
-          <folding />
+          <folding>
+            <marker date="1543459578572" expanded="true" signature="6762:6789" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -342,7 +340,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2193">
           <caret line="129" column="15" lean-forward="false" selection-start-line="129" selection-start-column="15" selection-end-line="129" selection-end-column="15" />
-          <folding />
+          <folding>
+            <marker date="1543459578572" expanded="true" signature="6762:6789" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -378,7 +378,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2193">
           <caret line="129" column="15" lean-forward="true" selection-start-line="129" selection-start-column="15" selection-end-line="129" selection-end-column="15" />
-          <folding />
+          <folding>
+            <marker date="1543459578572" expanded="true" signature="6762:6789" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -401,7 +403,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1581">
           <caret line="93" column="40" lean-forward="false" selection-start-line="93" selection-start-column="40" selection-end-line="93" selection-end-column="40" />
-          <folding />
+          <folding>
+            <marker date="1543459578572" expanded="true" signature="6762:6789" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -434,7 +438,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1581">
           <caret line="93" column="40" lean-forward="false" selection-start-line="93" selection-start-column="40" selection-end-line="93" selection-end-column="40" />
-          <folding />
+          <folding>
+            <marker date="1543459578572" expanded="true" signature="6762:6789" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -467,7 +473,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1581">
           <caret line="93" column="40" lean-forward="false" selection-start-line="93" selection-start-column="40" selection-end-line="93" selection-end-column="40" />
-          <folding />
+          <folding>
+            <marker date="1543459578572" expanded="true" signature="6762:6789" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -500,7 +508,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1581">
           <caret line="93" column="40" lean-forward="false" selection-start-line="93" selection-start-column="40" selection-end-line="93" selection-end-column="40" />
-          <folding />
+          <folding>
+            <marker date="1543459578572" expanded="true" signature="6762:6789" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -533,7 +543,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1581">
           <caret line="93" column="40" lean-forward="false" selection-start-line="93" selection-start-column="40" selection-end-line="93" selection-end-column="40" />
-          <folding />
+          <folding>
+            <marker date="1543459578572" expanded="true" signature="6762:6789" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -556,7 +568,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1394">
           <caret line="82" column="40" lean-forward="false" selection-start-line="82" selection-start-column="40" selection-end-line="82" selection-end-column="40" />
-          <folding />
+          <folding>
+            <marker date="1543459578572" expanded="true" signature="6762:6789" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -572,7 +586,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1543459578572" expanded="true" signature="6762:6789" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -595,8 +611,10 @@
     <entry file="file://$PROJECT_DIR$/ASTsRuby.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1377">
-          <caret line="81" column="38" lean-forward="false" selection-start-line="81" selection-start-column="38" selection-end-line="81" selection-end-column="38" />
-          <folding />
+          <caret line="96" column="38" lean-forward="false" selection-start-line="96" selection-start-column="38" selection-end-line="96" selection-end-column="38" />
+          <folding>
+            <marker date="1543459578570" expanded="true" signature="1920:1934" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -627,7 +645,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3721">
           <caret line="33" column="10" lean-forward="false" selection-start-line="33" selection-start-column="10" selection-end-line="33" selection-end-column="10" />
-          <folding />
+          <folding>
+            <marker date="1543459578572" expanded="true" signature="6762:6789" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -641,10 +661,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/parser.out">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="792" column="0" lean-forward="true" selection-start-line="792" selection-start-column="0" selection-end-line="792" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/gramarRuby.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="207" column="0" lean-forward="true" selection-start-line="207" selection-start-column="0" selection-end-line="207" selection-end-column="0" />
+        <state relative-caret-position="279">
+          <caret line="218" column="0" lean-forward="true" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
           <folding />
         </state>
       </provider>
