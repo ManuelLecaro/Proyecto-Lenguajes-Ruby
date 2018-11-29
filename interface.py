@@ -90,9 +90,6 @@ def codigoBotonLexico():
 		lexAString.set('Incorrecto')
 		lexBString.set('Correcto')
 
-	print(listaA)
-	print(listaB)
-
 
 def separadorPalabaras(stringA,stringB):
 	listaTokenA=separadorLista(stringA.split('\n'))
@@ -160,12 +157,33 @@ def analizadorSintactico(linea):
 
 #----------------------------------------------------------------------------------------------
 def codigoBotonPlagio():
-	plagString.set('100%')
-	textA = get_textA()
-	textB = get_textB()
-	print(textA)
-	print(textB)
+    textA = get_textA()
+    textB = get_textB()
+    listaA=generarTokenlista(textA.replace('\n',' ').split(' '))
+    listaB=generarTokenlista(textB.replace('\n',' ').split(' '))
+    listaCom=comparar(listaA,listaB)
+    if len(listaA) == len(listaCom):
+        plagString.set('100%')
+    else:
+        plagio=calcularPlagio(len(listaA),len(listaCom))
+        print(plagio)
+        plagString.set(str(plagio)+'%')
 
+    print(listaA)
+    print(listaB)
+    print(listaCom)
+def comparar(lista1,lista2):
+    comparacion = [item for item in lista1 if item in lista2]
+    return comparacion
+def calcularPlagio(numeroToken,numeroConicidencias):
+    plagio=(numeroConicidencias*100)//numeroToken
+    return plagio
+def generarTokenlista(lista):
+    listaretorno=[]
+    for item in lista:
+        token=generarToken(item)
+        listaretorno.append(token)
+    return listaretorno
 # Crear botones
 botonLex=Button(root, text="Lexical analysis", command=codigoBotonLexico)
 botonLex.config(cursor='hand2')
