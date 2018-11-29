@@ -178,7 +178,7 @@ def p_final(p):
     if(len(p)==3):
         p[0] = ASTsRuby.FinalAST(p[1], p[2])
     else:
-        p[0] = p[1]
+        p[0] = ASTsRuby.Arbol1(p[1])
 
 def p_iterador(p):
     '''iterador : variable

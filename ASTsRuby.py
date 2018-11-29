@@ -121,3 +121,5 @@ class StringAST(AST):
     _fields = ["string"]
 class Array(AST):
     _fields = ["derbracket", "arrayinterior", "izqbracket"]
+class Arbol1(AST):
+    _fields = ["derbracket"]

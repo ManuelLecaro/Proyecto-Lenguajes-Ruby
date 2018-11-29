@@ -22,17 +22,17 @@ tokens = ['LOCAL', 'GLOBAL', 'CONSTANTS', 'INSTANCEVAR','CLASSVAR','PSEUDO','ERR
         ]+list(reservadas.values())
 
 def t_LOCAL(t):
-    r'(_|[a-z])([a-zA-Z0-9_])*'
+    r'^(_|[a-z])([a-zA-Z0-9_])*'
     t.type=reservadas.get(t.value,'LOCAL')
     return t
 
 def t_GLOBAL(t):
-    r'\$[a-zA-Z]([a-zA-Z0-9_])*'
+    r'^\$[a-zA-Z]([a-zA-Z0-9_])*'
     t.type=reservadas.get(t.value,'GLOBAL')
     return t
 
 def t_CONSTANTS(t):
-    r'[A-Z]([A-Z0-9_])*'
+    r'^[A-Z]([A-Z0-9_])*'
     t.type=reservadas.get(t.value,'CONSTANTS')
     return t
 
@@ -108,155 +108,155 @@ def t_error(token):
     print (salida)
     token.lexer.skip(1)
 def t_ALIAS(t):
-    r'[a-z\_]+'
+    r'ALIAS'
     t.type=reservadas.get(t.value,'ALIAS')
     return t
 def t_AND(t):
-    r'[a-z\_]+'
+    r'AND'
     t.type=reservadas.get(t.value,'AND')
     return t
 def t_BREAK(t):
-    r'[a-z\_]+'
+    r'BREAK'
     t.type=reservadas.get(t.value,'BREAK')
     return t
 def t_BEGIN(t):
-    r'[a-z\_]+'
+    r'BEGIN'
     t.type=reservadas.get(t.value,'BEGIN')
     return t
 def t_CASE(t):
-    r'[a-z\_]+'
+    r'CASE'
     t.type=reservadas.get(t.value,'CASE')
     return t
 def t_CLASS(t):
-    r'[a-z\_]+'
+    r'CLASS'
     t.type=reservadas.get(t.value,'CLASS')
     return t
 def t_DEF(t):
-    r'[a-z\_]+'
+    r'DEF'
     t.type=reservadas.get(t.value,'DEF')
     return t
 def t_DEFINED(t):
-    r'[a-z\_]+'
+    r'DEFINED'
     t.type=reservadas.get(t.value,'DEFINED')
     return t
 def t_DO(t):
-    r'[a-z\_]+'
+    r'DO'
     t.type=reservadas.get(t.value,'DO')
     return t
 def t_ELSE(t):
-    r'[a-z\_]+'
+    r'ELSE'
     t.type=reservadas.get(t.value,'ELSE')
     return t
 def t_ELSIF(t):
-    r'[a-z\_]+'
+    r'ELSIF'
     t.type=reservadas.get(t.value,'ELSIF')
     return t
 def t_END(t):
-    r'[a-z\_]+'
+    r'END'
     t.type=reservadas.get(t.value,'END')
     return t
 def t_ENSURE(t):
-    r'[a-z\_]+'
+    r'ENSURE'
     t.type=reservadas.get(t.value,'ENSURE')
     return t
 def t_FALSE(t):
-    r'[a-z\_]+'
+    r'FALSE'
     t.type=reservadas.get(t.value,'FALSE')
     return t
 def t_FOR(t):
-    r'[a-z\_]+'
+    r'FOR'
     t.type=reservadas.get(t.value,'FOR')
     return t
 def t_IF(t):
-    r'[a-z\_]+'
+    r'IF'
     t.type=reservadas.get(t.value,'IF')
     return t
 def t_IN(t):
-    r'[a-z\_]+'
+    r'IN'
     t.type=reservadas.get(t.value,'IN')
     return t
 def t_MODULE(t):
-    r'[a-z\_]+'
+    r'MODULE'
     t.type=reservadas.get(t.value,'MODULE')
     return t
 def t_NEXT(t):
-    r'[a-z\_]+'
+    r'NEXT'
     t.type=reservadas.get(t.value,'NEXT')
     return t
 def t_NIL(t):
-    r'[a-z\_]+'
+    r'NIL'
     t.type=reservadas.get(t.value,'NIL')
     return t
 def t_NOT(t):
-    r'[a-z\_]+'
+    r'NOT'
     t.type=reservadas.get(t.value,'NOT')
     return t
 def t_OR(t):
-    r'[a-z\_]+'
+    r'OR'
     t.type=reservadas.get(t.value,'OR')
     return t
 def t_REDO(t):
-    r'[a-z\_]+'
+    r'REPO'
     t.type=reservadas.get(t.value,'REDO')
     return t
 def t_RESCUE(t):
-    r'[a-z\_]+'
+    r'RESCUE'
     t.type=reservadas.get(t.value,'RESCUE')
     return t
 def t_RETRY(t):
-    r'[a-z\_]+'
+    r'RETRY'
     t.type=reservadas.get(t.value,'RETRY')
     return t
 def t_RETURN(t):
-    r'[a-z\_]+'
+    r'RETURN'
     t.type=reservadas.get(t.value,'RETURN')
     return t
 def t_SELF(t):
-    r'[a-z\_]+'
+    r'SELF'
     t.type=reservadas.get(t.value,'SELF')
     return t
 def t_SUPER(t):
-    r'[a-z\_]+'
+    r'SUPER'
     t.type=reservadas.get(t.value,'SUPER')
     return t
 def t_THEN(t):
-    r'[a-z\_]+'
+    r'THEN'
     t.type=reservadas.get(t.value,'THEN')
     return t
 def t_TRUE(t):
-    r'[a-z\_]+'
+    r'TRUE'
     t.type=reservadas.get(t.value,'TRUE')
     return t
 def t_UNDEF(t):
-    r'[a-z\_]+'
+    r'UNDEF'
     t.type=reservadas.get(t.value,'UNDEF')
     return t
 def t_UNLESS(t):
-    r'[a-z\_]+'
+    r'UNLESS'
     t.type=reservadas.get(t.value,'UNLESS')
     return t
 def t_UNTIL(t):
-    r'[a-z\_]+'
+    r'UNTIL'
     t.type=reservadas.get(t.value,'UNTIL')
     return t
 def t_WHEN(t):
-    r'[a-z\_]+'
+    r'WHEN'
     t.type=reservadas.get(t.value,'WHEN')
     return t
 def t_WHILE(t):
-    r'[a-z\_]+'
+    r'WHILE'
     t.type=reservadas.get(t.value,'WHILE')
     return t
 def t_YIELD(t):
-    r'[a-z\_]+'
+    r'YIELD'
     t.type=reservadas.get(t.value,'YIELD')
     return t
 def t_FILE(t):
-    r'[a-z\_]+'
+    r'FILE'
     t.type=reservadas.get(t.value,'FILE')
     return t
 def t_LINE(t):
-    r'[a-z\_]+'
+    r'LINE'
     t.type=reservadas.get(t.value,'LINE')
     return t
 
