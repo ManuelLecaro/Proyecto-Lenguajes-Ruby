@@ -110,7 +110,8 @@ def p_sexpr(p):
         p[0] = p[1]
 
 def p_term(p):
-    '''term : NUMBER'''
+    '''term : NUMBER
+            | FLOAT'''
     p[0] = ASTsRuby.NumberAST(p[1])
 
 def p_sterm(p):
