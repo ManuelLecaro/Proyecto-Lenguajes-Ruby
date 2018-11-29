@@ -1,7 +1,7 @@
 import ply.yacc as yacc
 import lexerRuby
 import ASTsRuby
-# import ipdb
+import ipdb
 tokens=lexerRuby.tokens
 
 def p_code(p):
@@ -205,7 +205,11 @@ def p_defarray(p):
                 | FLOAT COMA defarray
                 | BOOLEAN
                 | BOOLEAN COMA defarray'''
-    p[0] = ASTsRuby.ArrayAST(p[1], p[2], p[3])
+    if(len(p)==4):
+        p[0] = ASTsRuby.ArrayAST(p[1], p[2], p[3])
+    if(len(p)==2):
+        p[0] = p[1]
+    # p[0] = ASTsRuby.ArrayAST(p[1], p[2], p[3])
 
 
 def p_index(p):
