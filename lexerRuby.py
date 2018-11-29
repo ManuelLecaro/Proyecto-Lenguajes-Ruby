@@ -94,7 +94,7 @@ t_DOUBLESECUENCEPOINT = r'\.\.'
 
 
 def t_NUMBER(t):
-     r'[0-9]+((\.[0-9]+))?'
+     r'(-)?[0-9]+((\.[0-9]+))?'
      t.value = float(t.value)    
      return t
 
@@ -150,7 +150,7 @@ def t_ELSIF(t):
     t.type=reservadas.get(t.value,'ELSIF')
     return t
 def t_END(t):
-    r'[a-z]+'
+    r'[a-z\_]+'
     t.type=reservadas.get(t.value,'END')
     return t
 def t_ENSURE(t):

@@ -85,7 +85,10 @@ class ExpAST(AST):
     _fields = ["termino","puntos","termino"]
 
 class ForAST(AST):
-    _fields = ["for", "iterator", "in", "expr", "salto", "code", "salto","end"]
+    _fields = ["for", "iterator", "in", "expr", "code","end"]
+
+class ForAST_o(AST):
+    _fields = ["for", "iterator", "in", "expr", "do","code", "end"]
 
 class FinalAST(AST):
     _fields = ["Then","expr"]
