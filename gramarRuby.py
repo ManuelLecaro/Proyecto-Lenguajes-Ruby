@@ -32,9 +32,9 @@ def p_logical(p):
     '''logical : term comparison term
                | term comparison logical
                | variable comparison term
-               | variable comparison BOOLEAN
+               | variable comparison boolean
                | logical logcompare logical
-               | BOOLEAN'''
+               | boolean'''
     if(len(p)==3):
         ASTsRuby.Logical(p[1], p[2], p[3])
     else:
@@ -206,8 +206,8 @@ def p_defarray(p):
                 | INT COMA defarray
                 | FLOAT
                 | FLOAT COMA defarray
-                | BOOLEAN
-                | BOOLEAN COMA defarray'''
+                | boolean
+                | boolean COMA defarray'''
     if(len(p)==4):
         p[0] = ASTsRuby.ArrayAST(p[1], p[2], p[3])
     if(len(p)==2):
@@ -234,6 +234,11 @@ def p_error(p):
         print("SYNTACTIC ERROR: line:", p.lexer.lineno, "position:", p.lexpos, "Syntax error:", p.value)
     else:
         print("SYNTACTIC ERROR: Unknown syntax error")
+
+def p_boolean(p):
+    '''boolean : TRUE
+                | FALSE
+    '''
 
     
 parser = yacc.yacc()

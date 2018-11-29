@@ -8,7 +8,7 @@ reservadas={'alias':'ALIAS','and':'AND','begin':'BEGIN','break':'BREAK','case':'
 
 tokens = ['LOCAL', 'GLOBAL', 'CONSTANTS', 'INSTANCEVAR','CLASSVAR','PSEUDO','ERROR',
         #BASIC DATA TYPES
-        'NUMBER', 'STRING','BOOLEAN','INT','FLOAT',
+        'NUMBER', 'STRING','INT','FLOAT', #'BOOLEAN'
         #ARITHMETIC OPERATORS
         'EXP','MUL','DIV','MOD','ADD','SUB',
         #BASIC COMPARISON OPERATORS
@@ -58,7 +58,7 @@ t_ignore = ' \t\r'
 
 #BASIC DATA TYPES
 t_STRING = r'"[a-z\_]+"'
-t_BOOLEAN = r'true|false'
+# t_BOOLEAN = r'true|false'
 
 
 #ARITHMETIC OPERATORS
