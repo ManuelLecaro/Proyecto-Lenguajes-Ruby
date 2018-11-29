@@ -81,6 +81,9 @@ class WhileAST_c(AST):
 class IteratorAST(AST):
     _fields = ["termino", "puntos", "termino"]
 
+class IteratorAST_u(AST):
+    _fields = ["termino"]
+
 class ExpAST(AST):
     _fields = ["termino","puntos","termino"]
 

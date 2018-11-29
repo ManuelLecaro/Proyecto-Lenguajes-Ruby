@@ -48,11 +48,14 @@ plagFinalLabel=Label(miFrame,text="", textvariable=plagString)
 plagFinalLabel.grid(row=3,column=5,sticky="w",padx=10,pady=5)
 
 # text areas
+root.update()
+width1 = int(miFrame.winfo_width() * 0.15)
+height1 = int(miFrame.winfo_height() * 0.10)
 
-codeA=Text(miFrame, width=30, height=10)
+codeA=Text(miFrame, width=width1, height=height1)
 codeA.grid(row=2,column=1)
 
-codeB=Text(miFrame, width=30, height=10)
+codeB=Text(miFrame, width=width1, height=height1)
 codeB.grid(row=4,column=1)
 
 # Creamos scrollbar
