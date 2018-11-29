@@ -1,7 +1,7 @@
 import ply.yacc as yacc
 import lexerRuby
 import ASTsRuby
-
+# import ipdb
 tokens=lexerRuby.tokens
 
 def p_code(p):
@@ -64,7 +64,7 @@ def p_assign(p):
               | variable ASS sexpr
               | variable ASS array'''
     p[0] = ASTsRuby.Assign(p[1], p[2], p[3])
-    print(p[0])
+    # print(p[0])
 
 def p_math(p):
     '''math : term arith term
@@ -228,7 +228,6 @@ def p_error(p):
     
 parser = yacc.yacc()
 
-string =  ' variable = 4 '
-
-print(parser.parse(string))
-
+# string =  ' variable = 4 '
+# ipdb.set_trace()
+# print(parser.parse(string))

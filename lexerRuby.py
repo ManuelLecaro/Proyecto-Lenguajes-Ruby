@@ -54,8 +54,10 @@ def t_PSEUDO(t):
 def t_NEWLINE(t):
     r'\n+'    
 
+t_ignore = ' \t\r'
+
 #BASIC DATA TYPES
-t_STRING = r'[a-z\_]+'
+t_STRING = r'"[a-z\_]+"'
 t_BOOLEAN = r'true|false'
 
 
@@ -265,10 +267,10 @@ texter = ['CONSTANTE', '4local','_local', '$global','@instance', '@@clase_', '@p
                 '**','*','/','%','+','-',
                '==','!=','>','<','>=','<=',
                '=','+=','-=','*=','/=','%=','**=',
-                '&&','||','!'
+                '&&','||','!','"string"'
                ]
 
-#for i in texter:
+# for i in texter:
 #    lex.input(i)
 #    token=lex.token()
 #    while token is not None:
