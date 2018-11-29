@@ -1,7 +1,7 @@
 import ply.yacc as yacc
 import lexerRuby
 import ASTsRuby
-import ipdb
+#import ipdb
 tokens=lexerRuby.tokens
 
 def p_code(p):
@@ -195,7 +195,7 @@ def p_expresiones(p):
 
 def p_array(p):
     '''array : LBRACK defarray RBRACK'''
-    p[0] = p[2]
+    p[0] = ASTsRuby.Array(p[1], p[2], p[3])
 
 def p_defarray(p):
     '''defarray : NUMBER 

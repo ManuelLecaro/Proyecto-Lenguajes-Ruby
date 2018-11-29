@@ -119,3 +119,5 @@ class NumberAST(AST):
 
 class StringAST(AST):
     _fields = ["string"]
+class Array(AST):
+    _fields = ["derbracket", "arrayinterior", "izqbracket"]
