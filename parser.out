@@ -2,33 +2,33 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
-    ALIAS
-    BREAK
-    CASE
-    CLASS
-    DEF
-    DEFINED
-    ENSURE
-    ERROR
-    FALSE
-    FILE
-    LINE
-    MODULE
-    NEXT
-    NIL
-    PSEUDO
     REDO
-    RESCUE
-    RETRY
-    RETURN
-    SELF
+    CASE
+    ERROR
+    DEF
     SUPER
-    TRUE
-    UNDEF
-    UNLESS
-    UNTIL
-    WHEN
+    FILE
     YIELD
+    BREAK
+    LINE
+    RESCUE
+    PSEUDO
+    ALIAS
+    ENSURE
+    DEFINED
+    RETRY
+    NEXT
+    UNTIL
+    SELF
+    UNDEF
+    CLASS
+    TRUE
+    WHEN
+    UNLESS
+    MODULE
+    NIL
+    FALSE
+    RETURN
 
 Grammar
 
@@ -268,6 +268,14 @@ state 1
 
     (0) S' -> while .
 
+    ASS             reduce using rule 13 (variable -> GLOBAL .)
+    ADDASS          reduce using rule 13 (variable -> GLOBAL .)
+    SUBASS          reduce using rule 13 (variable -> GLOBAL .)
+    MULASS          reduce using rule 13 (variable -> GLOBAL .)
+    DIVASS          reduce using rule 13 (variable -> GLOBAL .)
+    MODASS          reduce using rule 13 (variable -> GLOBAL .)
+    EXPASS          reduce using rule 13 (variable -> GLOBAL .)
+    $end            reduce using rule 13 (variable -> GLOBAL .)
 
 
 state 2
@@ -300,7 +308,7 @@ state 2
     term                           shift and go to state 5
     variable                       shift and go to state 6
 
-state 3
+state 4
 
     (4) while -> BEGIN . code END WHILE logical
     (72) code -> . expr
@@ -537,6 +545,20 @@ state 7
     END             reduce using rule 16 (logical -> BOOLEAN .)
     NEWLINE         reduce using rule 16 (logical -> BOOLEAN .)
     $end            reduce using rule 16 (logical -> BOOLEAN .)
+
+
+state 7
+
+    (14) variable -> CONSTANTS .
+
+    ASS             reduce using rule 14 (variable -> CONSTANTS .)
+    ADDASS          reduce using rule 14 (variable -> CONSTANTS .)
+    SUBASS          reduce using rule 14 (variable -> CONSTANTS .)
+    MULASS          reduce using rule 14 (variable -> CONSTANTS .)
+    DIVASS          reduce using rule 14 (variable -> CONSTANTS .)
+    MODASS          reduce using rule 14 (variable -> CONSTANTS .)
+    EXPASS          reduce using rule 14 (variable -> CONSTANTS .)
+    $end            reduce using rule 14 (variable -> CONSTANTS .)
 
 
 state 8
@@ -840,7 +862,7 @@ state 14
     slice                          shift and go to state 25
     index                          shift and go to state 26
 
-state 15
+state 11
 
     (72) code -> expr .
 
@@ -859,7 +881,7 @@ state 15
     NEWLINE         reduce using rule 72 (code -> expr .)
 
 
-state 16
+state 12
 
     (73) code -> if .
     (64) if -> if . else
@@ -886,7 +908,39 @@ state 16
     else                           shift and go to state 50
     elsif                          shift and go to state 51
 
-state 17
+state 13
+
+    (24) expr -> math .
+
+    $end            reduce using rule 24 (expr -> math .)
+
+
+state 14
+
+    (26) expr -> variable .
+    (5) math -> variable . asig term
+    (1) assign -> variable . ASS expr
+    (2) assign -> variable . ASS sexpr
+    (17) asig -> . ASS
+    (18) asig -> . ADDASS
+    (19) asig -> . SUBASS
+    (20) asig -> . MULASS
+    (21) asig -> . DIVASS
+    (22) asig -> . MODASS
+    (23) asig -> . EXPASS
+
+    $end            reduce using rule 26 (expr -> variable .)
+    ASS             shift and go to state 28
+    ADDASS          shift and go to state 30
+    SUBASS          shift and go to state 31
+    MULASS          shift and go to state 34
+    DIVASS          shift and go to state 32
+    MODASS          shift and go to state 33
+    EXPASS          shift and go to state 27
+
+    asig                           shift and go to state 29
+
+state 15
 
     (74) code -> while .
 
@@ -903,6 +957,20 @@ state 17
     CLASSVAR        reduce using rule 74 (code -> while .)
     LBRACK          reduce using rule 74 (code -> while .)
     NEWLINE         reduce using rule 74 (code -> while .)
+
+
+state 16
+
+    (2) assign -> variable ASS sexpr .
+
+    $end            reduce using rule 2 (assign -> variable ASS sexpr .)
+
+
+state 17
+
+    (27) expr -> assign .
+
+    $end            reduce using rule 27 (expr -> assign .)
 
 
 state 18
@@ -990,7 +1058,7 @@ state 20
   ! NEWLINE         [ reduce using rule 77 (code -> assign .) ]
 
 
-state 21
+state 23
 
     (78) code -> math .
     (29) expr -> math .
@@ -1037,7 +1105,7 @@ state 21
   ! NEWLINE         [ reduce using rule 78 (code -> math .) ]
 
 
-state 22
+state 24
 
     (30) expr -> term .
     (82) expresiones -> term . DOUBLESECUENCEPOINT term
@@ -1073,7 +1141,7 @@ state 22
 
     arith                          shift and go to state 55
 
-state 23
+state 25
 
     (31) expr -> variable .
     (5) assign -> variable . ASS expr
@@ -1116,7 +1184,7 @@ state 23
 
     asig                           shift and go to state 63
 
-state 24
+state 26
 
     (33) expr -> array .
 
@@ -1136,8 +1204,10 @@ state 24
     ELSE            reduce using rule 33 (expr -> array .)
     ELSIF           reduce using rule 33 (expr -> array .)
 
+    sterm                          shift and go to state 11
+    sexpr                          shift and go to state 39
 
-state 25
+state 27
 
     (34) expr -> slice .
 
@@ -1158,7 +1228,7 @@ state 25
     ELSIF           reduce using rule 34 (expr -> slice .)
 
 
-state 26
+state 28
 
     (35) expr -> index .
 
@@ -1417,7 +1487,7 @@ state 36
     CLASSVAR        reduce using rule 55 (logcompare -> NOTLOG .)
 
 
-state 37
+state 36
 
     (56) logcompare -> AND .
 
@@ -1430,7 +1500,7 @@ state 37
     CLASSVAR        reduce using rule 56 (logcompare -> AND .)
 
 
-state 38
+state 37
 
     (57) logcompare -> OR .
 
@@ -1443,7 +1513,7 @@ state 38
     CLASSVAR        reduce using rule 57 (logcompare -> OR .)
 
 
-state 39
+state 38
 
     (58) logcompare -> NOT .
 
@@ -1456,7 +1526,7 @@ state 39
     CLASSVAR        reduce using rule 58 (logcompare -> NOT .)
 
 
-state 40
+state 39
 
     (11) logical -> term comparison . term
     (12) logical -> term comparison . logical
