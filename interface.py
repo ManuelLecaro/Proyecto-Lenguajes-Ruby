@@ -152,8 +152,7 @@ def validarSintaxis(lista):
 	return listRetorno
 
 def analizadorSintactico(linea):
-	analizador=yacc.yacc()
-	arbol=analizador.parse(linea)
+	arbol=yacc.parse(linea)
 	if arbol is not None:
 		return arbol
 	return ''
