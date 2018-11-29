@@ -4,6 +4,18 @@ import ASTsRuby
 
 tokens=lexerRuby.tokens
 
+def p_code(p):
+    '''code : expr
+            | if
+            | while
+            | expresiones
+            | for
+            | assign
+            | code code'''
+    p[0] = p[1]
+    if(len(p)==3):
+        ASTsRuby.CodeAST(p[1], p[2])
+
 def p_while(p):
     '''while : WHILE logical code END
              | WHILE logical DO salto code salto END
@@ -15,6 +27,37 @@ def p_while(p):
             p[0] = ASTsRuby.WhileAST_s(p[1], p[2], p[3], p[4],p[5])
     if(len(p)==5):
             p[0] = ASTsRuby.WhileAST_c(p[1], p[2], p[3], p[4],p[5])
+
+def p_logical(p):
+    '''logical : term comparison term
+               | term comparison logical
+               | variable comparison term
+               | variable comparison BOOLEAN
+               | logical logcompare logical
+               | BOOLEAN'''
+    if(len(p)==3):
+        ASTsRuby.Logical(p[1], p[2], p[3])
+    else:
+        p[0] = p[1]
+
+
+def p_comparison(p):
+    '''comparison : EQUAL
+                  | NOTEQ
+                  | GREATHER
+                  | LOWER
+                  | GREATHEREQ
+                  | LOWEREQ'''
+    p[0] = p[1]
+
+def p_logcompare(p):
+    '''logcompare : ANDLOG
+                  | ORLOG
+                  | NOTLOG
+                  | AND
+                  | OR
+                  | NOT'''
+    p[0] = p[1] 
 
 def p_assign(p):
     '''assign : variable ASS expr
@@ -29,17 +72,6 @@ def p_math(p):
             | variable asig term'''
     p[0] = ASTsRuby.Math(p[1],p[2],p[3])
 
-def p_logical(p):
-    '''logical : term comparison term
-               | term comparison logical
-               | variable comparison term
-               | variable comparison BOOLEAN
-               | logical logcompare logical
-               | BOOLEAN'''
-    if(len(p)==3):
-        ASTsRuby.Logical(p[1], p[2], p[3])
-    else:
-        p[0] = p[1]
 
 def p_variable(p):
     '''variable : LOCAL
@@ -62,9 +94,8 @@ def p_asig(p):
 def p_expr(p):
     '''expr :  math
              | term
+             | sterm
              | variable
-             | assign
-             | array
              | slice
              | index'''
     p[0] = p[1]
@@ -72,8 +103,7 @@ def p_expr(p):
 
 def p_sexpr(p):
     '''sexpr : sterm MUL term
-             | sterm ADD sexpr
-             | sterm'''
+             | sterm ADD sexpr'''
     if(len(p)==4):
         ASTsRuby.SexprAST(p[1], p[2], p[3])
     if(len(p)==2):
@@ -81,11 +111,11 @@ def p_sexpr(p):
 
 def p_term(p):
     '''term : NUMBER'''
-    p[0] = p[1]
+    p[0] = ASTsRuby.NumberAST(p[1])
 
 def p_sterm(p):
     '''sterm : STRING'''
-    p[0] = p[1]
+    p[0] = ASTsRuby.StringAST(p[1])
 
 def p_arith(p):
     '''arith : EXP
@@ -96,31 +126,19 @@ def p_arith(p):
              | SUB'''
     p[0] = p[1]
 
+def p_for(p):
+    '''for : FOR iterador IN expresiones code END
+           | FOR iterador IN expresiones DO code END
+           | FOR iterador IN array code END
+           | FOR iterador IN array DO code END'''
+    p[0] = ASTsRuby.ForAST(p[1], p[2], p[3], p[4],p[5], p[6], p[7], p[8])    
 
-def p_comparison(p):
-    '''comparison : EQUAL
-                  | NOTEQ
-                  | GREATHER
-                  | LOWER
-                  | GREATHEREQ
-                  | LOWEREQ'''
-    p[0] = p[1]
-
-def p_logcompare(p):
-    '''logcompare : ANDLOG
-                  | ORLOG
-                  | NOTLOG
-                  | AND
-                  | OR
-                  | NOT'''
-    p[0] = p[1] 
-
-
-"""Definicion de la estructuras de condicion y lazos"""
 
 def p_salto(p):
     '''salto : NEWLINE '''
     p[0] = p[1]
+
+"""Definicion de la estructuras de condicion y lazos"""
 
 def p_if(p):
     '''if : IF logical expr END
@@ -139,7 +157,7 @@ def p_if(p):
         p[0] = ASTsRuby.IfAST_d(p[1], p[2])
 
 def p_else(p):
-    '''else : ELSE expr END'''
+    '''else : ELSE code END'''
     p[0] = ASTsRuby.ElseAST(p[1],p[2],p[3])
 
 def p_elsif(p):
@@ -150,39 +168,23 @@ def p_elsif(p):
         p[0] = ASTsRuby.ElseifAST_t(p[1], p[2], p[3])
 
 def p_final(p):
-    '''final : expr
-             | THEN expr
-             | expr else
-             | expr elsif '''
-
-def p_code(p):
-    '''code : expr
-            | if
-            | while
-            | expresiones
-            | for
-            | assign
-            | math
-            | code code'''
-    p[0] = p[1]
-
-
+    '''final : code
+             | THEN code
+             | code else
+             | code elsif '''
+    if(len(p)==3):
+        p[0] = ASTsRuby.FinalAST(p[1], p[2])
+    else:
+        p[0] = p[1]
 
 def p_iterador(p):
     '''iterador : variable
-                | variable "," variable'''
+                | variable COMA variable'''
     p[0] = ASTsRuby.IteratorAST(p[1], p[2], p[3])
     
 def p_expresiones(p):
     '''expresiones : term DOUBLESECUENCEPOINT term'''
     p[0] = ASTsRuby.ExpAST(p[1], p[2], p[3])
-
-def p_for(p):
-    '''for : FOR iterador IN expresiones code END
-           | FOR iterador IN expresiones DO code END
-           | FOR iterador IN array code END
-           | FOR iterador IN array DO code END'''
-    p[0] = ASTsRuby.ForAST(p[1], p[2], p[3], p[4],p[5], p[6], p[7], p[8])    
 
 
 def p_array(p):
@@ -226,7 +228,7 @@ def p_error(p):
     
 parser = yacc.yacc()
 
-string =  'a = 8'
+string =  ' variable = 4 '
 
 print(parser.parse(string))
 
