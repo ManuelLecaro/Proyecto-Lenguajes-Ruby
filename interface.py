@@ -4,6 +4,7 @@ import ply.lex as lex
 import ply.yacc as yacc
 import lexerRuby
 import gramarRuby
+# import ipdb
 root=Tk()
 
 miFrame=Frame(root,width=1200, height=600)
@@ -90,6 +91,12 @@ def codigoBotonLexico():
 		lexAString.set('Incorrecto')
 		lexBString.set('Correcto')
 
+	print("\n\n************** LISTA 1 ******************")
+	print(listaA)
+	print("\n\n************** LISTA 2 ******************")
+	print(listaB)
+	print("\n\n")
+
 
 def separadorPalabaras(stringA,stringB):
 	listaTokenA=separadorLista(stringA.split('\n'))
@@ -131,12 +138,20 @@ def codigoBotonSintactico():
 	if len(listaA) > 0 and len(listaB) > 0:
 		synctAString.set('Correcto')
 		synctBString.set('Correcto')
-	if len(listaA) > 0 and len(listaB) == 0:
+	elif len(listaA) > 0 and len(listaB) == 0:
 		synctAString.set('Correcto')
 		synctBString.set('Incorrecto')
-	if len(listaA) == 0 and len(listaB) > 0:
+	elif len(listaA) == 0 and len(listaB) > 0:
 		synctAString.set('Incorrecto')
 		synctBString.set('Correcto')
+	elif len(listaA) == 0 and len(listaB) == 0:
+		synctAString.set('Incorrecto')
+		synctBString.set('Incorrecto')
+	print("\n\n************** LISTA ARB 1 ******************")
+	print(listaA)
+	print("\n\n************** LISTA ARB 2 ******************")
+	print(listaB)
+	print("\n\n")
 
 def validarSintaxis(lista):
 	listRetorno=[]
@@ -150,6 +165,7 @@ def validarSintaxis(lista):
 
 def analizadorSintactico(linea):
 	analizador=gramarRuby.parser
+	# ipdb.set_trace()
 	arbol=analizador.parse(linea)
 	if arbol is not None:
 		return arbol
@@ -204,3 +220,17 @@ botonComp.pack()
 ###################################################################################
 
 root.mainloop()
+
+
+"""
+CODE
+
+i = 10
+if i == 10
+	puts "yes"
+else
+	puts "no"
+end
+
+
+"""

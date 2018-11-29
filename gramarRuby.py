@@ -1,7 +1,7 @@
 import ply.yacc as yacc
 import lexerRuby
 import ASTsRuby
-
+# import ipdb
 tokens=lexerRuby.tokens
 
 def p_code(p):
@@ -26,7 +26,7 @@ def p_while(p):
     if(len(p)==6):
             p[0] = ASTsRuby.WhileAST_s(p[1], p[2], p[3], p[4],p[5])
     if(len(p)==5):
-            p[0] = ASTsRuby.WhileAST_c(p[1], p[2], p[3], p[4],p[5])
+            p[0] = ASTsRuby.WhileAST_c(p[1], p[2], p[3], p[4])
 
 def p_logical(p):
     '''logical : term comparison term
@@ -64,7 +64,7 @@ def p_assign(p):
               | variable ASS sexpr
               | variable ASS array'''
     p[0] = ASTsRuby.Assign(p[1], p[2], p[3])
-    print(p[0])
+    # print(p[0])
 
 def p_math(p):
     '''math : term arith term
@@ -131,7 +131,10 @@ def p_for(p):
            | FOR iterador IN expresiones DO code END
            | FOR iterador IN array code END
            | FOR iterador IN array DO code END'''
-    p[0] = ASTsRuby.ForAST(p[1], p[2], p[3], p[4],p[5], p[6], p[7], p[8])    
+    if(len(p)==7):
+        p[0] = ASTsRuby.ForAST(p[1], p[2], p[3], p[4],p[5], p[6])    
+    if(len(p)==8):
+        p[0] = ASTsRuby.ForAST_o(p[1], p[2], p[3], p[4],p[5], p[6], p[7])   
 
 
 def p_salto(p):
@@ -228,7 +231,9 @@ def p_error(p):
     
 parser = yacc.yacc()
 
-string =  ' variable = 4 '
+# string =  ' variable = 4 '
+# ipdb.set_trace()
+# print(parser.parse(string))
 
-print(parser.parse(string))
-
+# string =  ' while a > 8 going = 2 end '
+# print(parser.parse(string))

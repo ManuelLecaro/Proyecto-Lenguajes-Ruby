@@ -54,8 +54,10 @@ def t_PSEUDO(t):
 def t_NEWLINE(t):
     r'\n+'    
 
+t_ignore = ' \t\r'
+
 #BASIC DATA TYPES
-t_STRING = r'[a-z\_]+'
+t_STRING = r'"[a-z\_]+"'
 t_BOOLEAN = r'true|false'
 
 
@@ -94,7 +96,7 @@ t_DOUBLESECUENCEPOINT = r'\.\.'
 
 
 def t_NUMBER(t):
-     r'[0-9]+((\.[0-9]+))?'
+     r'(-)?[0-9]+((\.[0-9]+))?'
      t.value = float(t.value)    
      return t
 
@@ -150,7 +152,7 @@ def t_ELSIF(t):
     t.type=reservadas.get(t.value,'ELSIF')
     return t
 def t_END(t):
-    r'[a-z]+'
+    r'[a-z\_]+'
     t.type=reservadas.get(t.value,'END')
     return t
 def t_ENSURE(t):
@@ -265,10 +267,10 @@ texter = ['CONSTANTE', '4local','_local', '$global','@instance', '@@clase_', '@p
                 '**','*','/','%','+','-',
                '==','!=','>','<','>=','<=',
                '=','+=','-=','*=','/=','%=','**=',
-                '&&','||','!'
+                '&&','||','!','"string"'
                ]
 
-#for i in texter:
+# for i in texter:
 #    lex.input(i)
 #    token=lex.token()
 #    while token is not None:
