@@ -108,15 +108,6 @@ def p_error(p):
 # def p_puntos(p):
 #     '''puntos : ":"'''
 
-def p_if(p):
-    '''if : IF logic expr END
-          | IF logic THEN expr END
-          | IF logic
-          | IF logic THEN
-          | if else
-          | if elsif END'''
-    p[0] = ASTsRuby.IfAST(p[1], p[2], p[3], p[4],p[5])
-
 def p_else(p):
     '''else : ELSE expr END'''
     p[0] = ASTsRuby.ElseAST(p[1],p[2],p[3],p[4])
@@ -127,6 +118,17 @@ def p_elsif(p):
              | ELSIF logic expr else
              | ELSIF LOGIC expr elsif'''
     p[0] = ASTsRuby.ElseifAST(p[1], p[2], p[3], p[4],p[5])
+
+def p_if(p):
+    '''if : IF logic expr END
+          | IF logic THEN expr END
+          | IF logic
+          | IF logic THEN
+          | if else
+          | if elsif END'''
+    p[0] = ASTsRuby.IfAST(p[1], p[2], p[3], p[4],p[5])
+
+
 
 def p_code(p):
     '''code : expr
@@ -202,3 +204,4 @@ def p_defslice(p):
     
 
 yacc.yacc()
+

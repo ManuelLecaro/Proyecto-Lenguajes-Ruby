@@ -1,8 +1,9 @@
 
 from tkinter import *
 import ply.lex as lex
+import ply.yacc as yacc
 import lexerRuby
-
+import gramarRuby
 root=Tk()
 
 miFrame=Frame(root,width=1200, height=600)
@@ -76,7 +77,6 @@ def get_textA():
 	return codeA.get("1.0",'end-1c')
 #Metodos para realizar el analisis lexico
 def codigoBotonLexico():
-
 	textA = get_textA()
 	textB = get_textB()
 	listaA,listaB=separadorPalabaras(textA,textB)
@@ -119,7 +119,8 @@ def generarToken(palabra):
 	if token is not None:
 		return token.type
 	return ''
-#--------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------
+#Metodos para realizar el analisis sintactico
 def get_textB():
 	return codeB.get("1.0",'end-1c')
 
@@ -128,9 +129,36 @@ def codigoBotonSintactico():
 	synctBString.set('Incorrecto')
 	textA = get_textA()
 	textB = get_textB()
-	print(textA)
-	print(textB)
+	listaA=validarSintaxis(textA.split('\n'))
+	listaB=validarSintaxis(textB.split('\n'))
+	if len(listaA) > 0 and len(listaB) > 0:
+		synctAString.set('Correcto')
+		synctBString.set('Correcto')
+	if len(listaA) > 0 and len(listaB) == 0:
+		synctAString.set('Correcto')
+		synctBString.set('Incorrecto')
+	if len(listaA) == 0 and len(listaB) > 0:
+		synctAString.set('Inorrecto')
+		synctBString.set('Correcto')
 
+def validarSintaxis(lista):
+	listRetorno=[]
+	vacia=[]
+	for linea in lista:
+		resultado=analizadorSintactico(linea)
+		if resultado == '':
+			return vacia
+		listRetorno.append(resultado)
+	return listRetorno
+
+def analizadorSintactico(linea):
+	analizador=yacc.yacc()
+	arbol=analizador.parse(linea)
+	if arbol is not None:
+		return arbol
+	return ''
+
+#----------------------------------------------------------------------------------------------
 def codigoBotonPlagio():
 	plagString.set('100%')
 	textA = get_textA()
