@@ -93,6 +93,9 @@ def codigoBotonLexico():
 	if len(listaA) == 0 and len(listaB) > 0:
 		lexAString.set('Incorrecto')
 		lexBString.set('Correcto')
+	if len(listaA) == 0 and len(listaB) == 0:
+		lexAString.set('Incorrecto')
+		lexBString.set('Incorrecto')
 
 	print("\n\n************** LISTA 1 ******************")
 	print(listaA)
