@@ -42,17 +42,32 @@ class Assign(AST):
 class Math(AST):
     _fields = ["terminoder", "op", "terminoizq"]
 
+class SexprAST(AST):
+    _fields = ["sterm", "op", "sterm"]
+
 class Logical(AST):
     _fields = ["first_term", "comparator", "second_term"]
 
 class IfAST(AST):
     _fields = ["first_term", "second_term", "third_term", "fourth_term", "end"]
 
+class IfAST_f(AST):
+    _fields = ["if", "logic", "then", "expr", "end"]
+
+class IfAST_t(AST):
+    _fields = ["if", "logic", "then"]
+
+class IfAST_d(AST):
+    _fields = ["if", "else"]
+
 class ElseAST(AST):
-    _fields = ["else","salto","expr", "salto"]
+    _fields = ["else","expr", "salto"]
 
 class ElseifAST(AST):
-    _fields = ["first_term", "second_term", "third_term", "fourth_term", "end"]
+    _fields = ["first_term", "second_term", "third_term", "end"]
+
+class ElseifAST_t(AST):
+    _fields = ["first_term", "second_term", "end"]
 
 class WhileAST(AST):
     _fields = ["while", "logic", "salto", "code", "salto", "end"]

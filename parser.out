@@ -38,209 +38,207 @@ Rule 2     assign -> variable ASS sexpr
 Rule 3     math -> term arith term
 Rule 4     math -> term arith math
 Rule 5     math -> variable asig term
-Rule 6     variable -> LOCAL
-Rule 7     variable -> GLOBAL
-Rule 8     variable -> CONSTANTS
-Rule 9     variable -> INSTANCEVAR
-Rule 10    variable -> CLASSVAR
-Rule 11    asig -> ASS
-Rule 12    asig -> ADDASS
-Rule 13    asig -> SUBASS
-Rule 14    asig -> MULASS
-Rule 15    asig -> DIVASS
-Rule 16    asig -> MODASS
-Rule 17    asig -> EXPASS
-Rule 18    expr -> math
-Rule 19    expr -> term
-Rule 20    expr -> variable
-Rule 21    expr -> assign
-Rule 22    sexpr -> sterm MUL term
-Rule 23    sexpr -> sterm ADD sexpr
-Rule 24    sexpr -> sterm
-Rule 25    term -> NUMBER
-Rule 26    sterm -> STRING
-Rule 27    arith -> EXP
-Rule 28    arith -> MUL
-Rule 29    arith -> DIV
-Rule 30    arith -> MOD
-Rule 31    arith -> ADD
-Rule 32    arith -> SUB
-Rule 33    logic -> variable comparison variable
-Rule 34    logic -> variable EQUAL BOOLEAN
-Rule 35    logic -> variable comparison term
-Rule 36    logic -> variable comparison sterm
-Rule 37    logic -> logic logcompare logic
-Rule 38    logic -> logic logcompare BOOLEAN
-Rule 39    logic -> BOOLEAN logcompare BOOLEAN
-Rule 40    logic -> BOOLEAN logcompare logic
-Rule 41    logic -> term comparison variable
-Rule 42    logic -> sterm comparison variable
-Rule 43    comparison -> EQUAL
-Rule 44    comparison -> NOTEQ
-Rule 45    comparison -> GREATHER
-Rule 46    comparison -> LOWER
-Rule 47    comparison -> GREATHEREQ
-Rule 48    comparison -> LOWEREQ
-Rule 49    logcompare -> ANDLOG
-Rule 50    logcompare -> ORLOG
-Rule 51    logcompare -> NOTLOG
-Rule 52    logcompare -> AND
-Rule 53    logcompare -> OR
-Rule 54    logcompare -> NOT
-Rule 55    salto -> NEWLINE
-Rule 56    if -> IF logic salto expr salto
-Rule 57    if -> IF logic THEN salto expr salto
-Rule 58    if -> if END
-Rule 59    if -> if else END
-Rule 60    if -> if elsif END
-Rule 61    else -> ELSE salto expr salto
-Rule 62    elsif -> ELSIF logic salto expr salto
-Rule 63    elsif -> ELSIF logic THEN salto expr salto
-Rule 64    elsif -> elsif elsif
-Rule 65    elsif -> elsif else
-Rule 66    code -> expr
-Rule 67    code -> if
-Rule 68    while -> WHILE logic code END
-Rule 69    while -> WHILE logic DO salto code END
-Rule 70    while -> WHILE logic DOBLEPOINT code END
-Rule 71    while -> BEGIN salto code END WHILE logic
-Rule 72    iterador -> variable
-Rule 73    iterador -> variable , variable
-Rule 74    expresiones -> term DOUBLESECUENCEPOINT term
-Rule 75    for -> FOR iterador IN expresiones salto code salto END
-Rule 76    for -> FOR iterador IN expresiones DO salto code salto END
-Rule 77    for -> FOR iterador IN array salto code salto END
-Rule 78    for -> FOR iterador IN array DO salto code salto END
-Rule 79    array -> LBRACK defarray RBRACK
-Rule 80    defarray -> NUMBER
-Rule 81    defarray -> NUMBER COMA defarray
-Rule 82    defarray -> STRING
-Rule 83    defarray -> STRING COMA defarray
-Rule 84    defarray -> INT
-Rule 85    defarray -> INT COMA defarray
-Rule 86    defarray -> FLOAT
-Rule 87    defarray -> FLOAT COMA defarray
-Rule 88    defarray -> BOOLEAN
-Rule 89    defarray -> BOOLEAN COMA defarray
-Rule 90    assarray -> variable ASS array
-Rule 91    assarray -> array
-Rule 92    index -> variable LBRACK INT RBRACK
-Rule 93    slice -> variable LBRACK defslice RBRACK
-Rule 94    defslice -> INT DOBLEPOINT INT
-Rule 95    defslice -> INT DOBLEPOINT
-Rule 96    defslice -> DOBLEPOINT INT
+Rule 6     logic -> logic_term comparison BOOLEAN
+Rule 7     logic -> logic_term comparison logic_term
+Rule 8     logic -> logic_term comparison logic
+Rule 9     logic_term -> variable
+Rule 10    logic_term -> term
+Rule 11    logic_term -> sterm
+Rule 12    variable -> LOCAL
+Rule 13    variable -> GLOBAL
+Rule 14    variable -> CONSTANTS
+Rule 15    variable -> INSTANCEVAR
+Rule 16    variable -> CLASSVAR
+Rule 17    asig -> ASS
+Rule 18    asig -> ADDASS
+Rule 19    asig -> SUBASS
+Rule 20    asig -> MULASS
+Rule 21    asig -> DIVASS
+Rule 22    asig -> MODASS
+Rule 23    asig -> EXPASS
+Rule 24    expr -> math
+Rule 25    expr -> term
+Rule 26    expr -> variable
+Rule 27    expr -> assign
+Rule 28    sexpr -> sterm MUL term
+Rule 29    sexpr -> sterm ADD sexpr
+Rule 30    sexpr -> sterm
+Rule 31    term -> NUMBER
+Rule 32    sterm -> STRING
+Rule 33    arith -> EXP
+Rule 34    arith -> MUL
+Rule 35    arith -> DIV
+Rule 36    arith -> MOD
+Rule 37    arith -> ADD
+Rule 38    arith -> SUB
+Rule 39    comparison -> EQUAL
+Rule 40    comparison -> NOTEQ
+Rule 41    comparison -> GREATHER
+Rule 42    comparison -> LOWER
+Rule 43    comparison -> GREATHEREQ
+Rule 44    comparison -> LOWEREQ
+Rule 45    logcompare -> ANDLOG
+Rule 46    logcompare -> ORLOG
+Rule 47    logcompare -> NOTLOG
+Rule 48    logcompare -> AND
+Rule 49    logcompare -> OR
+Rule 50    logcompare -> NOT
+Rule 51    salto -> NEWLINE
+Rule 52    if -> IF logic expr END
+Rule 53    if -> IF logic THEN expr END
+Rule 54    if -> IF logic
+Rule 55    if -> IF logic THEN
+Rule 56    if -> if else
+Rule 57    if -> if elsif END
+Rule 58    else -> ELSE expr END
+Rule 59    elsif -> ELSIF logic expr
+Rule 60    elsif -> ELSIF logic THEN expr
+Rule 61    elsif -> ELSIF logic expr else
+Rule 62    elsif -> ELSIF logic expr elsif
+Rule 63    code -> expr
+Rule 64    code -> if
+Rule 65    while -> WHILE logic code END
+Rule 66    while -> WHILE logic DO salto code END
+Rule 67    while -> WHILE logic DOBLEPOINT code END
+Rule 68    while -> BEGIN code END WHILE logic
+Rule 69    iterador -> variable
+Rule 70    iterador -> variable , variable
+Rule 71    expresiones -> term DOUBLESECUENCEPOINT term
+Rule 72    for -> FOR iterador IN expresiones code END
+Rule 73    for -> FOR iterador IN expresiones DO code END
+Rule 74    for -> FOR iterador IN array code END
+Rule 75    for -> FOR iterador IN array DO code END
+Rule 76    assarray -> variable ASS array
+Rule 77    assarray -> array
+Rule 78    array -> LBRACK defarray RBRACK
+Rule 79    defarray -> NUMBER
+Rule 80    defarray -> NUMBER COMA defarray
+Rule 81    defarray -> STRING
+Rule 82    defarray -> STRING COMA defarray
+Rule 83    defarray -> INT
+Rule 84    defarray -> INT COMA defarray
+Rule 85    defarray -> FLOAT
+Rule 86    defarray -> FLOAT COMA defarray
+Rule 87    defarray -> BOOLEAN
+Rule 88    defarray -> BOOLEAN COMA defarray
+Rule 89    index -> variable LBRACK INT RBRACK
+Rule 90    slice -> variable LBRACK defslice RBRACK
+Rule 91    defslice -> INT DOBLEPOINT INT
+Rule 92    defslice -> INT DOBLEPOINT
+Rule 93    defslice -> DOBLEPOINT INT
 
 Terminals, with rules where they appear
 
-,                    : 73
-ADD                  : 23 31
-ADDASS               : 12
+,                    : 70
+ADD                  : 29 37
+ADDASS               : 18
 ALIAS                : 
-AND                  : 52
-ANDLOG               : 49
-ASS                  : 1 2 11 90
-BEGIN                : 71
-BOOLEAN              : 34 38 39 39 40 88 89
+AND                  : 48
+ANDLOG               : 45
+ASS                  : 1 2 17 76
+BEGIN                : 68
+BOOLEAN              : 6 87 88
 BREAK                : 
 CASE                 : 
 CLASS                : 
-CLASSVAR             : 10
-COMA                 : 81 83 85 87 89
-CONSTANTS            : 8
+CLASSVAR             : 16
+COMA                 : 80 82 84 86 88
+CONSTANTS            : 14
 DEF                  : 
 DEFINED              : 
-DIV                  : 29
-DIVASS               : 15
-DO                   : 69 76 78
-DOBLEPOINT           : 70 94 95 96
-DOUBLESECUENCEPOINT  : 74
-ELSE                 : 61
-ELSIF                : 62 63
-END                  : 58 59 60 68 69 70 71 75 76 77 78
+DIV                  : 35
+DIVASS               : 21
+DO                   : 66 73 75
+DOBLEPOINT           : 67 91 92 93
+DOUBLESECUENCEPOINT  : 71
+ELSE                 : 58
+ELSIF                : 59 60 61 62
+END                  : 52 53 57 58 65 66 67 68 72 73 74 75
 ENSURE               : 
-EQUAL                : 34 43
+EQUAL                : 39
 ERROR                : 
-EXP                  : 27
-EXPASS               : 17
+EXP                  : 33
+EXPASS               : 23
 FALSE                : 
 FILE                 : 
-FLOAT                : 86 87
-FOR                  : 75 76 77 78
-GLOBAL               : 7
-GREATHER             : 45
-GREATHEREQ           : 47
-IF                   : 56 57
-IN                   : 75 76 77 78
-INSTANCEVAR          : 9
-INT                  : 84 85 92 94 94 95 96
-LBRACK               : 79 92 93
+FLOAT                : 85 86
+FOR                  : 72 73 74 75
+GLOBAL               : 13
+GREATHER             : 41
+GREATHEREQ           : 43
+IF                   : 52 53 54 55
+IN                   : 72 73 74 75
+INSTANCEVAR          : 15
+INT                  : 83 84 89 91 91 92 93
+LBRACK               : 78 89 90
 LINE                 : 
-LOCAL                : 6
-LOWER                : 46
-LOWEREQ              : 48
-MOD                  : 30
-MODASS               : 16
+LOCAL                : 12
+LOWER                : 42
+LOWEREQ              : 44
+MOD                  : 36
+MODASS               : 22
 MODULE               : 
-MUL                  : 22 28
-MULASS               : 14
-NEWLINE              : 55
+MUL                  : 28 34
+MULASS               : 20
+NEWLINE              : 51
 NEXT                 : 
 NIL                  : 
-NOT                  : 54
-NOTEQ                : 44
-NOTLOG               : 51
-NUMBER               : 25 80 81
-OR                   : 53
-ORLOG                : 50
+NOT                  : 50
+NOTEQ                : 40
+NOTLOG               : 47
+NUMBER               : 31 79 80
+OR                   : 49
+ORLOG                : 46
 PSEUDO               : 
-RBRACK               : 79 92 93
+RBRACK               : 78 89 90
 REDO                 : 
 RESCUE               : 
 RETRY                : 
 RETURN               : 
 SELF                 : 
-STRING               : 26 82 83
-SUB                  : 32
-SUBASS               : 13
+STRING               : 32 81 82
+SUB                  : 38
+SUBASS               : 19
 SUPER                : 
-THEN                 : 57 63
+THEN                 : 53 55 60
 TRUE                 : 
 UNDEF                : 
 UNLESS               : 
 UNTIL                : 
 WHEN                 : 
-WHILE                : 68 69 70 71
+WHILE                : 65 66 67 68
 YIELD                : 
 error                : 
 
 Nonterminals, with rules where they appear
 
 arith                : 3 4
-array                : 77 78 90 91
+array                : 74 75 76 77
 asig                 : 5
 assarray             : 
-assign               : 21 0
-code                 : 68 69 70 71 75 76 77 78
-comparison           : 33 35 36 41 42
-defarray             : 79 81 83 85 87 89
-defslice             : 93
-else                 : 59 65
-elsif                : 60 64 64 65
-expr                 : 1 56 57 61 62 63 66
-expresiones          : 75 76
+assign               : 27 0
+code                 : 65 66 67 68 72 73 74 75
+comparison           : 6 7 8
+defarray             : 78 80 82 84 86 88
+defslice             : 90
+else                 : 56 61
+elsif                : 57 62
+expr                 : 1 52 53 58 59 60 61 62 63
+expresiones          : 72 73
 for                  : 
-if                   : 58 59 60 67
+if                   : 56 57 64
 index                : 
-iterador             : 75 76 77 78
-logcompare           : 37 38 39 40
-logic                : 37 37 38 40 56 57 62 63 68 69 70 71
-math                 : 4 18
-salto                : 56 56 57 57 61 61 62 62 63 63 69 71 75 75 76 76 77 77 78 78
-sexpr                : 2 23
+iterador             : 72 73 74 75
+logcompare           : 
+logic                : 8 52 53 54 55 59 60 61 62 65 66 67 68
+logic_term           : 6 7 7 8
+math                 : 4 24
+salto                : 66
+sexpr                : 2 29
 slice                : 
-sterm                : 22 23 24 36 42
-term                 : 3 3 4 5 19 22 35 41 74 74
-variable             : 1 2 5 20 33 33 34 35 36 41 42 72 73 73 90 92 93
+sterm                : 11 28 29 30
+term                 : 3 3 4 5 10 25 28 71 71
+variable             : 1 2 5 9 26 69 70 70 76 89 90
 while                : 
 
 Parsing method: LALR
@@ -250,11 +248,11 @@ state 0
     (0) S' -> . assign
     (1) assign -> . variable ASS expr
     (2) assign -> . variable ASS sexpr
-    (6) variable -> . LOCAL
-    (7) variable -> . GLOBAL
-    (8) variable -> . CONSTANTS
-    (9) variable -> . INSTANCEVAR
-    (10) variable -> . CLASSVAR
+    (12) variable -> . LOCAL
+    (13) variable -> . GLOBAL
+    (14) variable -> . CONSTANTS
+    (15) variable -> . INSTANCEVAR
+    (16) variable -> . CLASSVAR
 
     LOCAL           shift and go to state 3
     GLOBAL          shift and go to state 4
@@ -281,97 +279,97 @@ state 2
 
 state 3
 
-    (6) variable -> LOCAL .
+    (12) variable -> LOCAL .
 
-    ASS             reduce using rule 6 (variable -> LOCAL .)
-    ADDASS          reduce using rule 6 (variable -> LOCAL .)
-    SUBASS          reduce using rule 6 (variable -> LOCAL .)
-    MULASS          reduce using rule 6 (variable -> LOCAL .)
-    DIVASS          reduce using rule 6 (variable -> LOCAL .)
-    MODASS          reduce using rule 6 (variable -> LOCAL .)
-    EXPASS          reduce using rule 6 (variable -> LOCAL .)
-    $end            reduce using rule 6 (variable -> LOCAL .)
+    ASS             reduce using rule 12 (variable -> LOCAL .)
+    ADDASS          reduce using rule 12 (variable -> LOCAL .)
+    SUBASS          reduce using rule 12 (variable -> LOCAL .)
+    MULASS          reduce using rule 12 (variable -> LOCAL .)
+    DIVASS          reduce using rule 12 (variable -> LOCAL .)
+    MODASS          reduce using rule 12 (variable -> LOCAL .)
+    EXPASS          reduce using rule 12 (variable -> LOCAL .)
+    $end            reduce using rule 12 (variable -> LOCAL .)
 
 
 state 4
 
-    (7) variable -> GLOBAL .
+    (13) variable -> GLOBAL .
 
-    ASS             reduce using rule 7 (variable -> GLOBAL .)
-    ADDASS          reduce using rule 7 (variable -> GLOBAL .)
-    SUBASS          reduce using rule 7 (variable -> GLOBAL .)
-    MULASS          reduce using rule 7 (variable -> GLOBAL .)
-    DIVASS          reduce using rule 7 (variable -> GLOBAL .)
-    MODASS          reduce using rule 7 (variable -> GLOBAL .)
-    EXPASS          reduce using rule 7 (variable -> GLOBAL .)
-    $end            reduce using rule 7 (variable -> GLOBAL .)
+    ASS             reduce using rule 13 (variable -> GLOBAL .)
+    ADDASS          reduce using rule 13 (variable -> GLOBAL .)
+    SUBASS          reduce using rule 13 (variable -> GLOBAL .)
+    MULASS          reduce using rule 13 (variable -> GLOBAL .)
+    DIVASS          reduce using rule 13 (variable -> GLOBAL .)
+    MODASS          reduce using rule 13 (variable -> GLOBAL .)
+    EXPASS          reduce using rule 13 (variable -> GLOBAL .)
+    $end            reduce using rule 13 (variable -> GLOBAL .)
 
 
 state 5
 
-    (8) variable -> CONSTANTS .
+    (14) variable -> CONSTANTS .
 
-    ASS             reduce using rule 8 (variable -> CONSTANTS .)
-    ADDASS          reduce using rule 8 (variable -> CONSTANTS .)
-    SUBASS          reduce using rule 8 (variable -> CONSTANTS .)
-    MULASS          reduce using rule 8 (variable -> CONSTANTS .)
-    DIVASS          reduce using rule 8 (variable -> CONSTANTS .)
-    MODASS          reduce using rule 8 (variable -> CONSTANTS .)
-    EXPASS          reduce using rule 8 (variable -> CONSTANTS .)
-    $end            reduce using rule 8 (variable -> CONSTANTS .)
+    ASS             reduce using rule 14 (variable -> CONSTANTS .)
+    ADDASS          reduce using rule 14 (variable -> CONSTANTS .)
+    SUBASS          reduce using rule 14 (variable -> CONSTANTS .)
+    MULASS          reduce using rule 14 (variable -> CONSTANTS .)
+    DIVASS          reduce using rule 14 (variable -> CONSTANTS .)
+    MODASS          reduce using rule 14 (variable -> CONSTANTS .)
+    EXPASS          reduce using rule 14 (variable -> CONSTANTS .)
+    $end            reduce using rule 14 (variable -> CONSTANTS .)
 
 
 state 6
 
-    (9) variable -> INSTANCEVAR .
+    (15) variable -> INSTANCEVAR .
 
-    ASS             reduce using rule 9 (variable -> INSTANCEVAR .)
-    ADDASS          reduce using rule 9 (variable -> INSTANCEVAR .)
-    SUBASS          reduce using rule 9 (variable -> INSTANCEVAR .)
-    MULASS          reduce using rule 9 (variable -> INSTANCEVAR .)
-    DIVASS          reduce using rule 9 (variable -> INSTANCEVAR .)
-    MODASS          reduce using rule 9 (variable -> INSTANCEVAR .)
-    EXPASS          reduce using rule 9 (variable -> INSTANCEVAR .)
-    $end            reduce using rule 9 (variable -> INSTANCEVAR .)
+    ASS             reduce using rule 15 (variable -> INSTANCEVAR .)
+    ADDASS          reduce using rule 15 (variable -> INSTANCEVAR .)
+    SUBASS          reduce using rule 15 (variable -> INSTANCEVAR .)
+    MULASS          reduce using rule 15 (variable -> INSTANCEVAR .)
+    DIVASS          reduce using rule 15 (variable -> INSTANCEVAR .)
+    MODASS          reduce using rule 15 (variable -> INSTANCEVAR .)
+    EXPASS          reduce using rule 15 (variable -> INSTANCEVAR .)
+    $end            reduce using rule 15 (variable -> INSTANCEVAR .)
 
 
 state 7
 
-    (10) variable -> CLASSVAR .
+    (16) variable -> CLASSVAR .
 
-    ASS             reduce using rule 10 (variable -> CLASSVAR .)
-    ADDASS          reduce using rule 10 (variable -> CLASSVAR .)
-    SUBASS          reduce using rule 10 (variable -> CLASSVAR .)
-    MULASS          reduce using rule 10 (variable -> CLASSVAR .)
-    DIVASS          reduce using rule 10 (variable -> CLASSVAR .)
-    MODASS          reduce using rule 10 (variable -> CLASSVAR .)
-    EXPASS          reduce using rule 10 (variable -> CLASSVAR .)
-    $end            reduce using rule 10 (variable -> CLASSVAR .)
+    ASS             reduce using rule 16 (variable -> CLASSVAR .)
+    ADDASS          reduce using rule 16 (variable -> CLASSVAR .)
+    SUBASS          reduce using rule 16 (variable -> CLASSVAR .)
+    MULASS          reduce using rule 16 (variable -> CLASSVAR .)
+    DIVASS          reduce using rule 16 (variable -> CLASSVAR .)
+    MODASS          reduce using rule 16 (variable -> CLASSVAR .)
+    EXPASS          reduce using rule 16 (variable -> CLASSVAR .)
+    $end            reduce using rule 16 (variable -> CLASSVAR .)
 
 
 state 8
 
     (1) assign -> variable ASS . expr
     (2) assign -> variable ASS . sexpr
-    (18) expr -> . math
-    (19) expr -> . term
-    (20) expr -> . variable
-    (21) expr -> . assign
-    (22) sexpr -> . sterm MUL term
-    (23) sexpr -> . sterm ADD sexpr
-    (24) sexpr -> . sterm
+    (24) expr -> . math
+    (25) expr -> . term
+    (26) expr -> . variable
+    (27) expr -> . assign
+    (28) sexpr -> . sterm MUL term
+    (29) sexpr -> . sterm ADD sexpr
+    (30) sexpr -> . sterm
     (3) math -> . term arith term
     (4) math -> . term arith math
     (5) math -> . variable asig term
-    (25) term -> . NUMBER
-    (6) variable -> . LOCAL
-    (7) variable -> . GLOBAL
-    (8) variable -> . CONSTANTS
-    (9) variable -> . INSTANCEVAR
-    (10) variable -> . CLASSVAR
+    (31) term -> . NUMBER
+    (12) variable -> . LOCAL
+    (13) variable -> . GLOBAL
+    (14) variable -> . CONSTANTS
+    (15) variable -> . INSTANCEVAR
+    (16) variable -> . CLASSVAR
     (1) assign -> . variable ASS expr
     (2) assign -> . variable ASS sexpr
-    (26) sterm -> . STRING
+    (32) sterm -> . STRING
 
     NUMBER          shift and go to state 16
     LOCAL           shift and go to state 3
@@ -391,19 +389,19 @@ state 8
 
 state 9
 
-    (20) expr -> variable .
+    (26) expr -> variable .
     (5) math -> variable . asig term
     (1) assign -> variable . ASS expr
     (2) assign -> variable . ASS sexpr
-    (11) asig -> . ASS
-    (12) asig -> . ADDASS
-    (13) asig -> . SUBASS
-    (14) asig -> . MULASS
-    (15) asig -> . DIVASS
-    (16) asig -> . MODASS
-    (17) asig -> . EXPASS
+    (17) asig -> . ASS
+    (18) asig -> . ADDASS
+    (19) asig -> . SUBASS
+    (20) asig -> . MULASS
+    (21) asig -> . DIVASS
+    (22) asig -> . MODASS
+    (23) asig -> . EXPASS
 
-    $end            reduce using rule 20 (expr -> variable .)
+    $end            reduce using rule 26 (expr -> variable .)
     ASS             shift and go to state 19
     ADDASS          shift and go to state 20
     SUBASS          shift and go to state 21
@@ -430,24 +428,24 @@ state 11
 
 state 12
 
-    (18) expr -> math .
+    (24) expr -> math .
 
-    $end            reduce using rule 18 (expr -> math .)
+    $end            reduce using rule 24 (expr -> math .)
 
 
 state 13
 
-    (19) expr -> term .
+    (25) expr -> term .
     (3) math -> term . arith term
     (4) math -> term . arith math
-    (27) arith -> . EXP
-    (28) arith -> . MUL
-    (29) arith -> . DIV
-    (30) arith -> . MOD
-    (31) arith -> . ADD
-    (32) arith -> . SUB
+    (33) arith -> . EXP
+    (34) arith -> . MUL
+    (35) arith -> . DIV
+    (36) arith -> . MOD
+    (37) arith -> . ADD
+    (38) arith -> . SUB
 
-    $end            reduce using rule 19 (expr -> term .)
+    $end            reduce using rule 25 (expr -> term .)
     EXP             shift and go to state 27
     MUL             shift and go to state 28
     DIV             shift and go to state 29
@@ -459,48 +457,48 @@ state 13
 
 state 14
 
-    (21) expr -> assign .
+    (27) expr -> assign .
 
-    $end            reduce using rule 21 (expr -> assign .)
+    $end            reduce using rule 27 (expr -> assign .)
 
 
 state 15
 
-    (22) sexpr -> sterm . MUL term
-    (23) sexpr -> sterm . ADD sexpr
-    (24) sexpr -> sterm .
+    (28) sexpr -> sterm . MUL term
+    (29) sexpr -> sterm . ADD sexpr
+    (30) sexpr -> sterm .
 
     MUL             shift and go to state 33
     ADD             shift and go to state 34
-    $end            reduce using rule 24 (sexpr -> sterm .)
+    $end            reduce using rule 30 (sexpr -> sterm .)
 
 
 state 16
 
-    (25) term -> NUMBER .
+    (31) term -> NUMBER .
 
-    EXP             reduce using rule 25 (term -> NUMBER .)
-    MUL             reduce using rule 25 (term -> NUMBER .)
-    DIV             reduce using rule 25 (term -> NUMBER .)
-    MOD             reduce using rule 25 (term -> NUMBER .)
-    ADD             reduce using rule 25 (term -> NUMBER .)
-    SUB             reduce using rule 25 (term -> NUMBER .)
-    $end            reduce using rule 25 (term -> NUMBER .)
+    EXP             reduce using rule 31 (term -> NUMBER .)
+    MUL             reduce using rule 31 (term -> NUMBER .)
+    DIV             reduce using rule 31 (term -> NUMBER .)
+    MOD             reduce using rule 31 (term -> NUMBER .)
+    ADD             reduce using rule 31 (term -> NUMBER .)
+    SUB             reduce using rule 31 (term -> NUMBER .)
+    $end            reduce using rule 31 (term -> NUMBER .)
 
 
 state 17
 
-    (26) sterm -> STRING .
+    (32) sterm -> STRING .
 
-    MUL             reduce using rule 26 (sterm -> STRING .)
-    ADD             reduce using rule 26 (sterm -> STRING .)
-    $end            reduce using rule 26 (sterm -> STRING .)
+    MUL             reduce using rule 32 (sterm -> STRING .)
+    ADD             reduce using rule 32 (sterm -> STRING .)
+    $end            reduce using rule 32 (sterm -> STRING .)
 
 
 state 18
 
     (5) math -> variable asig . term
-    (25) term -> . NUMBER
+    (31) term -> . NUMBER
 
     NUMBER          shift and go to state 16
 
@@ -510,26 +508,26 @@ state 19
 
     (1) assign -> variable ASS . expr
     (2) assign -> variable ASS . sexpr
-    (11) asig -> ASS .
-    (18) expr -> . math
-    (19) expr -> . term
-    (20) expr -> . variable
-    (21) expr -> . assign
-    (22) sexpr -> . sterm MUL term
-    (23) sexpr -> . sterm ADD sexpr
-    (24) sexpr -> . sterm
+    (17) asig -> ASS .
+    (24) expr -> . math
+    (25) expr -> . term
+    (26) expr -> . variable
+    (27) expr -> . assign
+    (28) sexpr -> . sterm MUL term
+    (29) sexpr -> . sterm ADD sexpr
+    (30) sexpr -> . sterm
     (3) math -> . term arith term
     (4) math -> . term arith math
     (5) math -> . variable asig term
-    (25) term -> . NUMBER
-    (6) variable -> . LOCAL
-    (7) variable -> . GLOBAL
-    (8) variable -> . CONSTANTS
-    (9) variable -> . INSTANCEVAR
-    (10) variable -> . CLASSVAR
+    (31) term -> . NUMBER
+    (12) variable -> . LOCAL
+    (13) variable -> . GLOBAL
+    (14) variable -> . CONSTANTS
+    (15) variable -> . INSTANCEVAR
+    (16) variable -> . CLASSVAR
     (1) assign -> . variable ASS expr
     (2) assign -> . variable ASS sexpr
-    (26) sterm -> . STRING
+    (32) sterm -> . STRING
 
   ! shift/reduce conflict for NUMBER resolved as shift
     NUMBER          shift and go to state 16
@@ -540,7 +538,7 @@ state 19
     CLASSVAR        shift and go to state 7
     STRING          shift and go to state 17
 
-  ! NUMBER          [ reduce using rule 11 (asig -> ASS .) ]
+  ! NUMBER          [ reduce using rule 17 (asig -> ASS .) ]
 
     variable                       shift and go to state 9
     expr                           shift and go to state 10
@@ -552,59 +550,59 @@ state 19
 
 state 20
 
-    (12) asig -> ADDASS .
+    (18) asig -> ADDASS .
 
-    NUMBER          reduce using rule 12 (asig -> ADDASS .)
+    NUMBER          reduce using rule 18 (asig -> ADDASS .)
 
 
 state 21
 
-    (13) asig -> SUBASS .
+    (19) asig -> SUBASS .
 
-    NUMBER          reduce using rule 13 (asig -> SUBASS .)
+    NUMBER          reduce using rule 19 (asig -> SUBASS .)
 
 
 state 22
 
-    (14) asig -> MULASS .
+    (20) asig -> MULASS .
 
-    NUMBER          reduce using rule 14 (asig -> MULASS .)
+    NUMBER          reduce using rule 20 (asig -> MULASS .)
 
 
 state 23
 
-    (15) asig -> DIVASS .
+    (21) asig -> DIVASS .
 
-    NUMBER          reduce using rule 15 (asig -> DIVASS .)
+    NUMBER          reduce using rule 21 (asig -> DIVASS .)
 
 
 state 24
 
-    (16) asig -> MODASS .
+    (22) asig -> MODASS .
 
-    NUMBER          reduce using rule 16 (asig -> MODASS .)
+    NUMBER          reduce using rule 22 (asig -> MODASS .)
 
 
 state 25
 
-    (17) asig -> EXPASS .
+    (23) asig -> EXPASS .
 
-    NUMBER          reduce using rule 17 (asig -> EXPASS .)
+    NUMBER          reduce using rule 23 (asig -> EXPASS .)
 
 
 state 26
 
     (3) math -> term arith . term
     (4) math -> term arith . math
-    (25) term -> . NUMBER
+    (31) term -> . NUMBER
     (3) math -> . term arith term
     (4) math -> . term arith math
     (5) math -> . variable asig term
-    (6) variable -> . LOCAL
-    (7) variable -> . GLOBAL
-    (8) variable -> . CONSTANTS
-    (9) variable -> . INSTANCEVAR
-    (10) variable -> . CLASSVAR
+    (12) variable -> . LOCAL
+    (13) variable -> . GLOBAL
+    (14) variable -> . CONSTANTS
+    (15) variable -> . INSTANCEVAR
+    (16) variable -> . CLASSVAR
 
     NUMBER          shift and go to state 16
     LOCAL           shift and go to state 3
@@ -619,80 +617,80 @@ state 26
 
 state 27
 
-    (27) arith -> EXP .
+    (33) arith -> EXP .
 
-    NUMBER          reduce using rule 27 (arith -> EXP .)
-    LOCAL           reduce using rule 27 (arith -> EXP .)
-    GLOBAL          reduce using rule 27 (arith -> EXP .)
-    CONSTANTS       reduce using rule 27 (arith -> EXP .)
-    INSTANCEVAR     reduce using rule 27 (arith -> EXP .)
-    CLASSVAR        reduce using rule 27 (arith -> EXP .)
+    NUMBER          reduce using rule 33 (arith -> EXP .)
+    LOCAL           reduce using rule 33 (arith -> EXP .)
+    GLOBAL          reduce using rule 33 (arith -> EXP .)
+    CONSTANTS       reduce using rule 33 (arith -> EXP .)
+    INSTANCEVAR     reduce using rule 33 (arith -> EXP .)
+    CLASSVAR        reduce using rule 33 (arith -> EXP .)
 
 
 state 28
 
-    (28) arith -> MUL .
+    (34) arith -> MUL .
 
-    NUMBER          reduce using rule 28 (arith -> MUL .)
-    LOCAL           reduce using rule 28 (arith -> MUL .)
-    GLOBAL          reduce using rule 28 (arith -> MUL .)
-    CONSTANTS       reduce using rule 28 (arith -> MUL .)
-    INSTANCEVAR     reduce using rule 28 (arith -> MUL .)
-    CLASSVAR        reduce using rule 28 (arith -> MUL .)
+    NUMBER          reduce using rule 34 (arith -> MUL .)
+    LOCAL           reduce using rule 34 (arith -> MUL .)
+    GLOBAL          reduce using rule 34 (arith -> MUL .)
+    CONSTANTS       reduce using rule 34 (arith -> MUL .)
+    INSTANCEVAR     reduce using rule 34 (arith -> MUL .)
+    CLASSVAR        reduce using rule 34 (arith -> MUL .)
 
 
 state 29
 
-    (29) arith -> DIV .
+    (35) arith -> DIV .
 
-    NUMBER          reduce using rule 29 (arith -> DIV .)
-    LOCAL           reduce using rule 29 (arith -> DIV .)
-    GLOBAL          reduce using rule 29 (arith -> DIV .)
-    CONSTANTS       reduce using rule 29 (arith -> DIV .)
-    INSTANCEVAR     reduce using rule 29 (arith -> DIV .)
-    CLASSVAR        reduce using rule 29 (arith -> DIV .)
+    NUMBER          reduce using rule 35 (arith -> DIV .)
+    LOCAL           reduce using rule 35 (arith -> DIV .)
+    GLOBAL          reduce using rule 35 (arith -> DIV .)
+    CONSTANTS       reduce using rule 35 (arith -> DIV .)
+    INSTANCEVAR     reduce using rule 35 (arith -> DIV .)
+    CLASSVAR        reduce using rule 35 (arith -> DIV .)
 
 
 state 30
 
-    (30) arith -> MOD .
+    (36) arith -> MOD .
 
-    NUMBER          reduce using rule 30 (arith -> MOD .)
-    LOCAL           reduce using rule 30 (arith -> MOD .)
-    GLOBAL          reduce using rule 30 (arith -> MOD .)
-    CONSTANTS       reduce using rule 30 (arith -> MOD .)
-    INSTANCEVAR     reduce using rule 30 (arith -> MOD .)
-    CLASSVAR        reduce using rule 30 (arith -> MOD .)
+    NUMBER          reduce using rule 36 (arith -> MOD .)
+    LOCAL           reduce using rule 36 (arith -> MOD .)
+    GLOBAL          reduce using rule 36 (arith -> MOD .)
+    CONSTANTS       reduce using rule 36 (arith -> MOD .)
+    INSTANCEVAR     reduce using rule 36 (arith -> MOD .)
+    CLASSVAR        reduce using rule 36 (arith -> MOD .)
 
 
 state 31
 
-    (31) arith -> ADD .
+    (37) arith -> ADD .
 
-    NUMBER          reduce using rule 31 (arith -> ADD .)
-    LOCAL           reduce using rule 31 (arith -> ADD .)
-    GLOBAL          reduce using rule 31 (arith -> ADD .)
-    CONSTANTS       reduce using rule 31 (arith -> ADD .)
-    INSTANCEVAR     reduce using rule 31 (arith -> ADD .)
-    CLASSVAR        reduce using rule 31 (arith -> ADD .)
+    NUMBER          reduce using rule 37 (arith -> ADD .)
+    LOCAL           reduce using rule 37 (arith -> ADD .)
+    GLOBAL          reduce using rule 37 (arith -> ADD .)
+    CONSTANTS       reduce using rule 37 (arith -> ADD .)
+    INSTANCEVAR     reduce using rule 37 (arith -> ADD .)
+    CLASSVAR        reduce using rule 37 (arith -> ADD .)
 
 
 state 32
 
-    (32) arith -> SUB .
+    (38) arith -> SUB .
 
-    NUMBER          reduce using rule 32 (arith -> SUB .)
-    LOCAL           reduce using rule 32 (arith -> SUB .)
-    GLOBAL          reduce using rule 32 (arith -> SUB .)
-    CONSTANTS       reduce using rule 32 (arith -> SUB .)
-    INSTANCEVAR     reduce using rule 32 (arith -> SUB .)
-    CLASSVAR        reduce using rule 32 (arith -> SUB .)
+    NUMBER          reduce using rule 38 (arith -> SUB .)
+    LOCAL           reduce using rule 38 (arith -> SUB .)
+    GLOBAL          reduce using rule 38 (arith -> SUB .)
+    CONSTANTS       reduce using rule 38 (arith -> SUB .)
+    INSTANCEVAR     reduce using rule 38 (arith -> SUB .)
+    CLASSVAR        reduce using rule 38 (arith -> SUB .)
 
 
 state 33
 
-    (22) sexpr -> sterm MUL . term
-    (25) term -> . NUMBER
+    (28) sexpr -> sterm MUL . term
+    (31) term -> . NUMBER
 
     NUMBER          shift and go to state 16
 
@@ -700,11 +698,11 @@ state 33
 
 state 34
 
-    (23) sexpr -> sterm ADD . sexpr
-    (22) sexpr -> . sterm MUL term
-    (23) sexpr -> . sterm ADD sexpr
-    (24) sexpr -> . sterm
-    (26) sterm -> . STRING
+    (29) sexpr -> sterm ADD . sexpr
+    (28) sexpr -> . sterm MUL term
+    (29) sexpr -> . sterm ADD sexpr
+    (30) sexpr -> . sterm
+    (32) sterm -> . STRING
 
     STRING          shift and go to state 17
 
@@ -723,12 +721,12 @@ state 36
     (3) math -> term arith term .
     (3) math -> term . arith term
     (4) math -> term . arith math
-    (27) arith -> . EXP
-    (28) arith -> . MUL
-    (29) arith -> . DIV
-    (30) arith -> . MOD
-    (31) arith -> . ADD
-    (32) arith -> . SUB
+    (33) arith -> . EXP
+    (34) arith -> . MUL
+    (35) arith -> . DIV
+    (36) arith -> . MOD
+    (37) arith -> . ADD
+    (38) arith -> . SUB
 
     $end            reduce using rule 3 (math -> term arith term .)
     EXP             shift and go to state 27
@@ -750,13 +748,13 @@ state 37
 state 38
 
     (5) math -> variable . asig term
-    (11) asig -> . ASS
-    (12) asig -> . ADDASS
-    (13) asig -> . SUBASS
-    (14) asig -> . MULASS
-    (15) asig -> . DIVASS
-    (16) asig -> . MODASS
-    (17) asig -> . EXPASS
+    (17) asig -> . ASS
+    (18) asig -> . ADDASS
+    (19) asig -> . SUBASS
+    (20) asig -> . MULASS
+    (21) asig -> . DIVASS
+    (22) asig -> . MODASS
+    (23) asig -> . EXPASS
 
     ASS             shift and go to state 41
     ADDASS          shift and go to state 20
@@ -770,23 +768,23 @@ state 38
 
 state 39
 
-    (22) sexpr -> sterm MUL term .
+    (28) sexpr -> sterm MUL term .
 
-    $end            reduce using rule 22 (sexpr -> sterm MUL term .)
+    $end            reduce using rule 28 (sexpr -> sterm MUL term .)
 
 
 state 40
 
-    (23) sexpr -> sterm ADD sexpr .
+    (29) sexpr -> sterm ADD sexpr .
 
-    $end            reduce using rule 23 (sexpr -> sterm ADD sexpr .)
+    $end            reduce using rule 29 (sexpr -> sterm ADD sexpr .)
 
 
 state 41
 
-    (11) asig -> ASS .
+    (17) asig -> ASS .
 
-    NUMBER          reduce using rule 11 (asig -> ASS .)
+    NUMBER          reduce using rule 17 (asig -> ASS .)
 
 WARNING: 
 WARNING: Conflicts:

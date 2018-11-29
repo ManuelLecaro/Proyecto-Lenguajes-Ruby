@@ -92,7 +92,7 @@ t_LBRACK = r'\['
 t_RBRACK = r'\]'
 t_COMA = r','
 t_DOBLEPOINT = r':'
-t_DOUBLESECUENCEPOINT = r'..'
+t_DOUBLESECUENCEPOINT = r'\.\.'
 
 
 
@@ -267,10 +267,10 @@ texter = ['CONSTANTE', '4local','_local', '$global','@instance', '@@clase_', '@p
                 '&&','||','!'
                ]
 
-for i in texter:
-    lex.input(i)
-    token=lex.token()
-    while token is not None:
-        print(token.type)
-        token = lex.token()
+#for i in texter:
+#    lex.input(i)
+#    token=lex.token()
+#    while token is not None:
+#        print(token.type)
+#        token = lex.token()
 
