@@ -183,7 +183,10 @@ def p_final(p):
 def p_iterador(p):
     '''iterador : variable
                 | variable COMA variable'''
-    p[0] = ASTsRuby.IteratorAST(p[1], p[2], p[3])
+    if(len(p)==4):
+        p[0] = ASTsRuby.IteratorAST(p[1], p[2], p[3])
+    if(len(p)==2):
+        p[0] = ASTsRuby.IteratorAST_u(p[1])
     
 def p_expresiones(p):
     '''expresiones : term DOUBLESECUENCEPOINT term'''
